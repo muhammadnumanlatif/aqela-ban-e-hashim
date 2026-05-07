@@ -111,12 +111,11 @@ export default function FarmPlanner() {
 }
 
 function BOQView({ costs, acres }) {
-  const wallRate = ((costs.items.wall + costs.items.fancyWall) / costs.boundRft / 1000).toFixed(1) + 'K/Rft';
   const treeRate = ((costs.items.orchard + costs.items.boundTreeCost) / (costs.orchardTrees + costs.boundTrees) / 1000).toFixed(1) + 'K/Tr';
 
   const group1 = [
     { section: '1. Site Infrastructure' },
-    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: wallRate, cost: costs.items.wall + costs.items.fancyWall },
+    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: '3.3K/RFT', cost: costs.items.wall + costs.items.fancyWall },
     { item: '1.2 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
     { item: '1.3 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
     { item: '1.4 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
