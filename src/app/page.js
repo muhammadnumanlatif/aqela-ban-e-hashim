@@ -126,7 +126,7 @@ function BOQView({ costs, acres }) {
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
     { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
-    { item: '2.2 Livestock Facility & Stores', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
+    { item: '2.2 Livestock Shade & Fodder Storage', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
     { item: '2.3 Controlled Greenhouse', qty: '1 Unit', unit: 'Comm.', cost: costs.items.greenhouse },
     { subtotal: 'Buildings Subtotal', cost: costs.buildings }
   ];
