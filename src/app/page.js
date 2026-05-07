@@ -111,9 +111,12 @@ export default function FarmPlanner() {
 }
 
 function BOQView({ costs, acres }) {
+  const wallRate = ((costs.items.wall + costs.items.fancyWall) / costs.boundRft / 1000).toFixed(1) + 'K/Rft';
+  const treeRate = ((costs.items.orchard + costs.items.boundTreeCost) / (costs.orchardTrees + costs.boundTrees) / 1000).toFixed(1) + 'K/Tr';
+
   const group1 = [
     { section: '1. Site Infrastructure' },
-    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: 'Mixed', cost: costs.items.wall + costs.items.fancyWall },
+    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: wallRate, cost: costs.items.wall + costs.items.fancyWall },
     { item: '1.2 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
     { item: '1.3 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
     { item: '1.4 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
@@ -133,7 +136,7 @@ function BOQView({ costs, acres }) {
     { section: '4. Livestock & Production' },
     { item: '4.1 Sahiwal Cows', qty: costs.cowCount + ' Nos', unit: '720K/Ea', cost: costs.items.cows },
     { item: '4.2 Nili Ravi Buffaloes', qty: costs.buffCount + ' Nos', unit: '920K/Ea', cost: costs.items.buffs },
-    { item: '4.3 Commercial Orchard & Trees', qty: (costs.orchardTrees + costs.boundTrees) + ' Tr', unit: 'Mixed', cost: costs.items.orchard + costs.items.boundTreeCost },
+    { item: '4.3 Commercial Orchard & Trees', qty: (costs.orchardTrees + costs.boundTrees) + ' Tr', unit: treeRate, cost: costs.items.orchard + costs.items.boundTreeCost },
     { item: '4.4 Fish Pond & Veg/Vermi', qty: '1 Unit', unit: 'Setup', cost: costs.items.fishPond + costs.items.vermi + costs.items.vegArea },
     { subtotal: 'Livestock/Agri Subtotal', cost: costs.livestock + costs.production },
     { section: '5. Project Summary' },
