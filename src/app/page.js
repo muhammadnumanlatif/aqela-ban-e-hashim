@@ -122,7 +122,7 @@ function BOQView({ costs, acres }) {
     { item: '1.2 Front Elevation / Fancy Wall', qty: '1 Unit', unit: 'Lumsum', cost: costs.items.fancyWall },
     { item: '1.3 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
     { item: '1.4 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.5 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
+    { item: '1.5 Water Source & Harvesting(Tube Well)', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
     { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
