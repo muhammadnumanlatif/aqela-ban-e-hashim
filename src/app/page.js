@@ -113,27 +113,28 @@ export default function FarmPlanner() {
 function BOQView({ costs, acres }) {
   const group1 = [
     { section: '1. Site Infrastructure' },
-    { item: '1.1 Boundary Wall (8ft)', qty: costs.boundRft + ' Rft', unit: '3.3K/Rft', cost: costs.items.wall },
+    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: 'Mixed', cost: costs.items.wall + costs.items.fancyWall },
     { item: '1.2 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
     { item: '1.3 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.4 Water Source/Storage', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank },
+    { item: '1.4 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
     { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
-    { item: '2.2 Livestock Facility', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
+    { item: '2.2 Livestock Facility & Stores', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
     { item: '2.3 Controlled Greenhouse', qty: '1 Unit', unit: 'Comm.', cost: costs.items.greenhouse },
     { subtotal: 'Buildings Subtotal', cost: costs.buildings }
   ];
 
   const group2 = [
     { section: '3. Utilities & Smart Farming' },
-    { item: '3.1 Solar Power System', qty: costs.solarKW + ' KW', unit: 'Hybrid', cost: costs.items.solar },
-    { item: '3.2 Smart Irrigation', qty: acres + ' Ac', unit: '250K/Ac', cost: costs.items.drip + costs.items.filtration },
+    { item: '3.1 Energy (Solar, Bio, Grid)', qty: costs.solarKW + ' KW', unit: 'Hybrid', cost: costs.items.solar + costs.items.biogas + costs.items.electrification },
+    { item: '3.2 Smart Irrigation & Pumps', qty: acres + ' Ac', unit: '250K/Ac', cost: costs.items.drip + costs.items.filtration + costs.items.pressureTank },
     { subtotal: 'Utilities Subtotal', cost: costs.energy + costs.water },
-    { section: '4. Livestock & Plantation' },
+    { section: '4. Livestock & Production' },
     { item: '4.1 Sahiwal Cows', qty: costs.cowCount + ' Nos', unit: '720K/Ea', cost: costs.items.cows },
     { item: '4.2 Nili Ravi Buffaloes', qty: costs.buffCount + ' Nos', unit: '920K/Ea', cost: costs.items.buffs },
-    { item: '4.3 Commercial Orchard', qty: costs.orchardTrees + ' Tr', unit: 'Mixed', cost: costs.items.orchard },
+    { item: '4.3 Commercial Orchard & Trees', qty: (costs.orchardTrees + costs.boundTrees) + ' Tr', unit: 'Mixed', cost: costs.items.orchard + costs.items.boundTreeCost },
+    { item: '4.4 Fish Pond & Veg/Vermi', qty: '1 Unit', unit: 'Setup', cost: costs.items.fishPond + costs.items.vermi + costs.items.vegArea },
     { subtotal: 'Livestock/Agri Subtotal', cost: costs.livestock + costs.production },
     { section: '5. Project Summary' },
     { grandsubtotal: 'Direct Costs Subtotal', cost: costs.subtotal },
