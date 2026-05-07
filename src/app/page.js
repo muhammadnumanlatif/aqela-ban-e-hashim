@@ -294,21 +294,21 @@ function MapView({ acres }) {
 
   return (
     <>
-      <div className="iso-map-wrapper">
-        <div className="iso-map">
+      <div className="map-2d-wrapper">
+        <div className="map-2d-grid">
           {zones.map((z, i) => (
-            <div key={i} className={`iso-zone iso-${z.id}`} style={{ '--zone-color': z.color }}>
-              <div className="iso-zone-content">
-                <span className="iso-icon">{z.icon}</span>
-                <span className="iso-label">{z.label}</span>
-                <span className="iso-acreage">{(z.pct * acres).toFixed(2)} Ac</span>
+            <div key={i} className={`map-zone map-${z.id}`} style={{ '--zone-color': z.color }}>
+              <div className="map-zone-content">
+                <span className="map-icon">{z.icon}</span>
+                <span className="map-label">{z.label}</span>
+                <span className="map-acreage">{(z.pct * acres).toFixed(2)} Ac</span>
               </div>
             </div>
           ))}
         </div>
       </div>
       <p style={{ marginTop: '20px', fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', fontWeight: '500' }}>
-        * Interactive 3D visualization. Hover over zones to view details. Layout adjusts based on optimal agricultural zoning.
+        * Premium 2D visual representation. Layout automatically adapts to optimal agricultural zoning.
       </p>
     </>
   );
