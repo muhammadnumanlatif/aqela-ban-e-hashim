@@ -1,8 +1,7 @@
 
-export const interp = (min, max, a) => {
-    if (a <= 1) return min;
-    if (a >= 50) return max;
-    return min + (max - min) * (Math.log(a) / Math.log(50));
+export const interp = (y1, y5, a) => {
+    // Extrapolate linearly using the 1-acre (y1) and 5-acre (y5) baselines
+    return y1 + ((y5 - y1) / 4) * (a - 1);
 };
 
 export const calcCosts = (a) => {
