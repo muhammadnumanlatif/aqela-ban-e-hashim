@@ -212,6 +212,7 @@ input[type=range] {
 }
 
 .iso-map {
+    --map-scale: 1;
     display: grid;
     grid-template-areas: 
         "rez rez hvf hvf"
@@ -220,7 +221,7 @@ input[type=range] {
     grid-template-columns: 1fr 1fr 1.5fr 1fr;
     grid-template-rows: 120px 120px 150px;
     gap: 15px;
-    transform: rotateX(60deg) rotateZ(-45deg);
+    transform: scale(var(--map-scale)) rotateX(60deg) rotateZ(-45deg);
     transform-style: preserve-3d;
     width: 100%;
     max-width: 600px;
@@ -228,7 +229,7 @@ input[type=range] {
 }
 
 .iso-map:hover {
-    transform: rotateX(55deg) rotateZ(-40deg);
+    transform: scale(var(--map-scale)) rotateX(55deg) rotateZ(-40deg);
 }
 
 .iso-zone {
@@ -482,7 +483,18 @@ td {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (min-width: 1400px) { /* XXL Devices */
+    .iso-map { --map-scale: 1.2; }
+    .iso-map-wrapper { min-height: 600px; padding: 80px 20px; }
+}
+
+@media (max-width: 992px) { /* Large Devices */
+    .iso-map { --map-scale: 0.85; }
+    .iso-map-wrapper { min-height: 450px; padding: 40px 10px; }
+    .boq-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) { /* Medium Devices (Tablets) */
     header {
         flex-direction: column;
         gap: 20px;
@@ -493,4 +505,26 @@ td {
     .phases-grid { grid-template-columns: 1fr; }
     .metrics-grid { padding: 20px; }
     .tab-content { padding: 20px; }
+    
+    .iso-map { --map-scale: 0.7; }
+    .iso-map-wrapper { min-height: 380px; padding: 30px 10px; }
+}
+
+@media (max-width: 576px) { /* Small Devices (Phones) */
+    .iso-map { --map-scale: 0.55; }
+    .iso-map-wrapper { min-height: 300px; padding: 20px 5px; }
+    .iso-icon { font-size: 28px; }
+    .iso-label { font-size: 11px; }
+    .iso-acreage { font-size: 10px; padding: 2px 6px; }
+    
+    .acre-input-group { flex-direction: column; width: 100%; }
+    .tabs-nav { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 360px) { /* Mini / Foldable Devices */
+    .iso-map { --map-scale: 0.45; }
+    .iso-map-wrapper { min-height: 250px; padding: 10px 5px; }
+    .iso-icon { font-size: 22px; }
+    .iso-label { font-size: 9px; }
+    .iso-acreage { font-size: 9px; padding: 2px 4px; }
 }
