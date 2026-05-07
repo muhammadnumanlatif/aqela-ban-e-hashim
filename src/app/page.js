@@ -4,7 +4,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { calcCosts, fmt, fmtM } from "@/utils/calculations";
-import InvestmentPlanView from "./InvestmentPlanView";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -27,7 +26,7 @@ ChartJS.register(
 
 export default function FarmPlanner() {
   const [acres, setAcres] = useState(5);
-  const [activeTab, setActiveTab] = useState("investor");
+  const [activeTab, setActiveTab] = useState("boq");
   const [costs, setCosts] = useState(null);
 
   useEffect(() => {
@@ -95,7 +94,6 @@ export default function FarmPlanner() {
       </div>
 
       <nav className="tabs-nav">
-        <button className={`tab-btn ${activeTab === 'investor' ? 'active' : ''}`} onClick={() => setActiveTab('investor')}>Investment Plan</button>
         <button className={`tab-btn ${activeTab === 'boq' ? 'active' : ''}`} onClick={() => setActiveTab('boq')}>Bill of Quantities (BOQ)</button>
         <button className={`tab-btn ${activeTab === 'phases' ? 'active' : ''}`} onClick={() => setActiveTab('phases')}>Implementation Phases</button>
         <button className={`tab-btn ${activeTab === 'chart' ? 'active' : ''}`} onClick={() => setActiveTab('chart')}>Cost Analysis</button>
@@ -103,7 +101,6 @@ export default function FarmPlanner() {
       </nav>
 
       <div className="tab-content">
-        {activeTab === 'investor' && <InvestmentPlanView />}
         {activeTab === 'boq' && <BOQView costs={costs} acres={acres} />}
         {activeTab === 'phases' && <PhasesView costs={costs} acres={acres} />}
         {activeTab === 'chart' && <ChartView costs={costs} />}
@@ -122,11 +119,11 @@ function BOQView({ costs, acres }) {
     { item: '1.2 Front Elevation / Fancy Wall', qty: '1 Unit', unit: 'Lumsum', cost: costs.items.fancyWall },
     { item: '1.3 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
     { item: '1.4 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.5 Water Source & Harvesting(Tube Well)', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
+    { item: '1.5 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
     { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
-    { item: '2.2 Livestock Shade & Fodder Storage', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
+    { item: '2.2 Livestock Shed & Fodder Storage', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
     { item: '2.3 Controlled Greenhouse', qty: '1 Unit', unit: 'Comm.', cost: costs.items.greenhouse },
     { subtotal: 'Buildings Subtotal', cost: costs.buildings }
   ];
