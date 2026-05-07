@@ -75,8 +75,3 @@ export const calcCosts = (a) => {
 
 export const fmt = (num) => "PKR " + Math.round(num).toLocaleString();
 export const fmtM = (num) => (num / 1000000).toFixed(2) + "M";
-export const fmtRate = (num) => {
-    if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-    if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-    return Math.round(num).toString();
-};

@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { calcCosts, fmt, fmtM, fmtRate } from "@/utils/calculations";
+import { calcCosts, fmt, fmtM } from "@/utils/calculations";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -113,33 +113,33 @@ export default function FarmPlanner() {
 function BOQView({ costs, acres }) {
   const group1 = [
     { section: '1. Site Infrastructure' },
-    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: fmtRate((costs.items.wall + costs.items.fancyWall) / costs.boundRft) + '/Rft', cost: costs.items.wall + costs.items.fancyWall },
-    { item: '1.2 Main Gate & Security', qty: '1 No.', unit: fmtRate(costs.items.gate) + '/No', cost: costs.items.gate },
-    { item: '1.3 Roads & Leveling', qty: acres + ' Ac', unit: fmtRate((costs.items.roads + costs.items.leveling) / acres) + '/Ac', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.4 Water Source & Harvesting', qty: '1 Unit', unit: fmtRate(costs.items.tubewell + costs.items.waterTank + costs.items.rainwater) + '/Unit', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
+    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: 'Mixed', cost: costs.items.wall + costs.items.fancyWall },
+    { item: '1.2 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
+    { item: '1.3 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
+    { item: '1.4 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
-    { item: '2.1 Designer Farm House', qty: '10 M', unit: fmtRate(costs.items.house / 10) + '/M', cost: costs.items.house },
-    { item: '2.2 Livestock Facility & Stores', qty: costs.animalShedMarla + ' M', unit: fmtRate((costs.items.animalShed + costs.items.fodder) / costs.animalShedMarla) + '/M', cost: costs.items.animalShed + costs.items.fodder },
-    { item: '2.3 Controlled Greenhouse', qty: '1 Unit', unit: fmtRate(costs.items.greenhouse) + '/Unit', cost: costs.items.greenhouse },
+    { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
+    { item: '2.2 Livestock Facility & Stores', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
+    { item: '2.3 Controlled Greenhouse', qty: '1 Unit', unit: 'Comm.', cost: costs.items.greenhouse },
     { subtotal: 'Buildings Subtotal', cost: costs.buildings }
   ];
 
   const group2 = [
     { section: '3. Utilities & Smart Farming' },
-    { item: '3.1 Energy (Solar, Bio, Grid)', qty: costs.solarKW + ' KW', unit: fmtRate((costs.items.solar + costs.items.biogas + costs.items.electrification) / costs.solarKW) + '/KW', cost: costs.items.solar + costs.items.biogas + costs.items.electrification },
-    { item: '3.2 Smart Irrigation & Pumps', qty: acres + ' Ac', unit: fmtRate((costs.items.drip + costs.items.filtration + costs.items.pressureTank) / acres) + '/Ac', cost: costs.items.drip + costs.items.filtration + costs.items.pressureTank },
+    { item: '3.1 Energy (Solar, Bio, Grid)', qty: costs.solarKW + ' KW', unit: 'Hybrid', cost: costs.items.solar + costs.items.biogas + costs.items.electrification },
+    { item: '3.2 Smart Irrigation & Pumps', qty: acres + ' Ac', unit: '250K/Ac', cost: costs.items.drip + costs.items.filtration + costs.items.pressureTank },
     { subtotal: 'Utilities Subtotal', cost: costs.energy + costs.water },
     { section: '4. Livestock & Production' },
-    { item: '4.1 Sahiwal Cows', qty: costs.cowCount + ' Nos', unit: fmtRate(720000) + '/Ea', cost: costs.items.cows },
-    { item: '4.2 Nili Ravi Buffaloes', qty: costs.buffCount + ' Nos', unit: fmtRate(920000) + '/Ea', cost: costs.items.buffs },
-    { item: '4.3 Commercial Orchard & Trees', qty: (costs.orchardTrees + costs.boundTrees) + ' Tr', unit: fmtRate((costs.items.orchard + costs.items.boundTreeCost) / (costs.orchardTrees + costs.boundTrees)) + '/Tr', cost: costs.items.orchard + costs.items.boundTreeCost },
-    { item: '4.4 Fish Pond & Veg/Vermi', qty: '1 Unit', unit: fmtRate(costs.items.fishPond + costs.items.vermi + costs.items.vegArea) + '/Unit', cost: costs.items.fishPond + costs.items.vermi + costs.items.vegArea },
+    { item: '4.1 Sahiwal Cows', qty: costs.cowCount + ' Nos', unit: '720K/Ea', cost: costs.items.cows },
+    { item: '4.2 Nili Ravi Buffaloes', qty: costs.buffCount + ' Nos', unit: '920K/Ea', cost: costs.items.buffs },
+    { item: '4.3 Commercial Orchard & Trees', qty: (costs.orchardTrees + costs.boundTrees) + ' Tr', unit: 'Mixed', cost: costs.items.orchard + costs.items.boundTreeCost },
+    { item: '4.4 Fish Pond & Veg/Vermi', qty: '1 Unit', unit: 'Setup', cost: costs.items.fishPond + costs.items.vermi + costs.items.vegArea },
     { subtotal: 'Livestock/Agri Subtotal', cost: costs.livestock + costs.production },
     { section: '5. Project Summary' },
     { grandsubtotal: 'Direct Costs Subtotal', cost: costs.subtotal },
-    { item: 'Management & Consultant', qty: '9%', unit: 'of Subtotal', cost: costs.consultant },
-    { item: 'Contingency Fund', qty: '12%', unit: 'of Subtotal', cost: costs.contingency },
+    { item: 'Management & Consultant', qty: '9%', unit: 'Ahmro', cost: costs.consultant },
+    { item: 'Contingency Fund', qty: '12%', unit: 'Reserve', cost: costs.contingency },
     { grand: 'ESTIMATED TOTAL', cost: costs.grand }
   ];
 
