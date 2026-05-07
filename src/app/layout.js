@@ -8,7 +8,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "Integrated Farm Planner | Ahmro Global & ARB Farms",
+  title: "Self Sustainable OFF Grid Farming Solution | Ahmro Global & ARB Farms",
   description: "Professional farm cost and layout planning tool for modern agricultural projects.",
 };
 
