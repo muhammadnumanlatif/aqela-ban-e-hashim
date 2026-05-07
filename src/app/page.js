@@ -115,10 +115,11 @@ function BOQView({ costs, acres }) {
 
   const group1 = [
     { section: '1. Site Infrastructure' },
-    { item: '1.1 Boundary Wall & Elevation', qty: costs.boundRft + ' Rft', unit: '3.3K/RFT', cost: costs.items.wall + costs.items.fancyWall },
-    { item: '1.2 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
-    { item: '1.3 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.4 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
+    { item: '1.1 Boundary Wall (8ft)', qty: costs.boundRft + ' Rft', unit: '3.3K/RFT', cost: costs.items.wall },
+    { item: '1.2 Front Elevation / Fancy Wall', qty: '1 Unit', unit: 'Lumsum', cost: costs.items.fancyWall },
+    { item: '1.3 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
+    { item: '1.4 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
+    { item: '1.5 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
     { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
