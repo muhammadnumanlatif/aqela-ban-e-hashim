@@ -278,7 +278,6 @@ function ChartView({ costs }) {
 }
 
 function MapView({ acres }) {
-  // Zoning Logic
   const rezPct = Math.max(0.1, Math.min(0.2, 0.15 + (5 - acres) * 0.005));
   const liveZPct = 0.22;
   const utilZPct = 0.12;
@@ -286,41 +285,30 @@ function MapView({ acres }) {
   const orchardPct = 1 - (rezPct + liveZPct + utilZPct + hvfZPct);
 
   const zones = [
-    { label: 'Residential & Lawn', icon: '🏡', color: '#f1f8e9', pct: rezPct },
-    { label: 'Livestock & Paddock', icon: '🐄', color: '#fff3e0', pct: liveZPct },
-    { label: 'Utilities (Solar/Bio)', icon: '⚙️', color: '#e1f5fe', pct: utilZPct },
-    { label: 'High-Value Farming', icon: '🥗', color: '#e8f5e9', pct: hvfZPct },
-    { label: 'Orchard & Grazing', icon: '🌳', color: '#f3e5f5', pct: orchardPct }
+    { id: 'rez', label: 'Residential', icon: '🏡', color: '#c5e1a5', pct: rezPct },
+    { id: 'live', label: 'Livestock', icon: '🐄', color: '#ffe082', pct: liveZPct },
+    { id: 'util', label: 'Utilities', icon: '⚙️', color: '#90caf9', pct: utilZPct },
+    { id: 'hvf', label: 'High-Value Crops', icon: '🥗', color: '#a5d6a7', pct: hvfZPct },
+    { id: 'orchard', label: 'Orchard & Grazing', icon: '🌳', color: '#ce93d8', pct: orchardPct }
   ];
-
-  let currentLeft = 0;
 
   return (
     <>
-      <div className="farm-map-container">
-        {zones.map((z, i) => {
-          const zW = z.pct * 100;
-          const left = currentLeft;
-          currentLeft += zW;
-          const acreVal = (z.pct * acres).toFixed(2);
-          return (
-            <div key={i} className="zone" style={{
-              left: `${left}%`,
-              width: `${zW}%`,
-              height: '100%',
-              background: z.color,
-              border: '1px solid rgba(0,0,0,0.05)',
-              position: 'absolute'
-            }}>
-              <div className="zone-icon">{z.icon}</div>
-              <div className="zone-label">{z.label}</div>
-              <div className="zone-acreage">{acreVal} Acres</div>
+      <div className="iso-map-wrapper">
+        <div className="iso-map">
+          {zones.map((z, i) => (
+            <div key={i} className={`iso-zone iso-${z.id}`} style={{ '--zone-color': z.color }}>
+              <div className="iso-zone-content">
+                <span className="iso-icon">{z.icon}</span>
+                <span className="iso-label">{z.label}</span>
+                <span className="iso-acreage">{(z.pct * acres).toFixed(2)} Ac</span>
+              </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-      <p style={{ marginTop: '10px', fontSize: '11px', color: 'var(--text-muted)', textAlign: 'center' }}>
-        * Visual representation of land use zones based on selected acreage.
+      <p style={{ marginTop: '20px', fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', fontWeight: '500' }}>
+        * Interactive 3D visualization. Hover over zones to view details. Layout adjusts based on optimal agricultural zoning.
       </p>
     </>
   );
