@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { calcCosts, fmt, fmtM } from "@/utils/calculations";
+import InvestmentPlanView from "./InvestmentPlanView";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -101,7 +102,13 @@ export default function FarmPlanner() {
       </nav>
 
       <div className="tab-content">
-        {activeTab === 'boq' && <BOQView costs={costs} acres={acres} />}
+        {activeTab === 'boq' && (
+          <div className="boq-container">
+            <InvestmentPlanView />
+            <div style={{ margin: '40px 0', borderTop: '2px dashed #e2e8f0' }} />
+            <BOQView costs={costs} acres={acres} />
+          </div>
+        )}
         {activeTab === 'phases' && <PhasesView costs={costs} acres={acres} />}
         {activeTab === 'chart' && <ChartView costs={costs} />}
         {activeTab === 'map' && <MapView acres={acres} />}
@@ -119,7 +126,7 @@ function BOQView({ costs, acres }) {
     { item: '1.2 Front Elevation / Fancy Wall', qty: '1 Unit', unit: 'Lumsum', cost: costs.items.fancyWall },
     { item: '1.3 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
     { item: '1.4 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.5 Water Source & Harvesting', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
+    { item: '1.5 Water Source & Harvesting[Tube Well]', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
     { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
     { section: '2. Buildings & Structures' },
     { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
