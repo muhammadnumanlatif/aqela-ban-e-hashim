@@ -9,7 +9,18 @@ export const interp = (min, max, a) => {
 
 export const calcCosts = (a) => {
     // 1. Site Infrastructure & Earthworks
-    const boundRft = Math.round(interp(500, 770, a));
+    const b3 = 500; // 1-acre base Rft
+    const c3 = 770; // 5-acre base Rft
+    let boundRft;
+    if (a <= 1) {
+        boundRft = b3;
+    } else if (a < 5) {
+        boundRft = b3 + 67.5 * (a - 1);
+    } else {
+        boundRft = c3 + 67.5 * (a - 5);
+    }
+    boundRft = Math.round(boundRft);
+
     const wall = boundRft * 3300;
     const fancyWall = interp(1200000, 1848000, a);
     const gate = 850000;
