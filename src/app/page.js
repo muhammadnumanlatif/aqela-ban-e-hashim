@@ -104,8 +104,6 @@ export default function FarmPlanner() {
       <div className="tab-content">
         {activeTab === 'boq' && (
           <div className="boq-container">
-            <InvestmentPlanView />
-            <div style={{ margin: '40px 0', borderTop: '2px dashed #e2e8f0' }} />
             <BOQView costs={costs} />
           </div>
         )}
