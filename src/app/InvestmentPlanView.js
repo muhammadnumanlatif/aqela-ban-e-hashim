@@ -40,9 +40,12 @@ export default function InvestmentPlanView({ acres }) {
                 .hero-left p { font-family: 'Outfit', sans-serif; opacity: 0.7; font-size: 13px; font-weight: 400; margin-top: 4px; }
                 .acres-tag { background: #8fbb92; color: #1e3320; padding: 5px 15px; border-radius: 50px; font-weight: 600; font-size: 12px; margin-top: 10px; display: inline-block; font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
                 
-                .total-investment-bar { background: #f5f2ec; padding: 15px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #ede8df; flex-wrap: wrap; gap: 20px; }
-                .tib-item .lbl { font-family: 'Outfit', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #8a8070; font-weight: 500; }
-                .tib-item .val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: #1e3320; line-height: 1.1; }
+                .total-investment-bar { background: #f8fafc; padding: 20px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 20px; }
+                .tib-item .lbl { font-family: 'Outfit', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; font-weight: 700; margin-bottom: 4px; }
+                .tib-item .val { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: #1b5235; line-height: 1.2; }
+                .tib-item.grand-total { border-left: 2px solid #1b5235; padding-left: 30px; }
+                .tib-item.grand-total .lbl { color: #1b5235; }
+                .tib-item.grand-total .val { font-size: 22px; color: #1b5235; }
 
                 .main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
                 
@@ -149,15 +152,15 @@ export default function InvestmentPlanView({ acres }) {
               <div class="total-investment-bar">
                 <div class="tib-item">
                   <div class="lbl">Land Subtotal</div>
-                  <div class="val">${totalLandCost.toLocaleString()}</div>
+                  <div class="val">${totalLandCost.toLocaleString()} <span style="font-size: 11px; opacity: 0.7;">PKR</span></div>
                 </div>
                 <div class="tib-item">
                   <div class="lbl">OFF Grid Subtotal</div>
-                  <div class="val">${Math.round(totalConst).toLocaleString()}</div>
+                  <div class="val">${Math.round(totalConst).toLocaleString()} <span style="font-size: 11px; opacity: 0.7;">PKR</span></div>
                 </div>
-                <div class="tib-item" style="border-left: 2px solid #8fbb92; padding-left: 30px;">
-                  <div class="lbl" style="color: #2c4a2e; font-weight: 700;">Grand Total Investment</div>
-                  <div class="val" style="color: #2c4a2e;">${Math.round(totalLandCost + totalConst).toLocaleString()} <span style="font-size: 14px; font-weight: 500; font-family: 'Outfit';">PKR</span></div>
+                <div class="tib-item grand-total">
+                  <div class="lbl">Grand Total Investment</div>
+                  <div class="val">${Math.round(totalLandCost + totalConst).toLocaleString()} <span style="font-size: 14px; font-weight: 500;">PKR</span></div>
                 </div>
               </div>
 
