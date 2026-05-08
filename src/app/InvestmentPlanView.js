@@ -55,11 +55,12 @@ export default function InvestmentPlanView({ acres }) {
                 .payment-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
                 .payment-table tr { border-bottom: 1px solid #f0ede8; }
                 .payment-table td { padding: 14px 0; vertical-align: middle; }
-                .pt-pct { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: #2c4a2e; width: 65px; font-size: 20px; }
+                .pt-pct { font-family: 'Outfit', sans-serif; font-weight: 700; color: #1b5235; width: 65px; font-size: 18px; }
                 .pt-info { font-family: 'Outfit', sans-serif; }
                 .pt-info h4 { font-size: 14px; color: #1e3320; font-weight: 600; }
                 .pt-info p { color: #8a8070; font-size: 11px; font-weight: 400; margin-top: 2px; }
-                .pt-price { font-family: 'Cormorant Garamond', serif; text-align: right; font-weight: 700; color: #1e3320; font-size: 17px; }
+                .pt-price { font-family: 'Outfit', sans-serif; text-align: right; font-weight: 700; color: #1b5235; font-size: 18px; }
+                .pt-price span { font-size: 11px; opacity: 0.7; font-weight: 400; margin-left: 4px; }
                 
                 .milestone-badge { background: #eaf3eb; color: #2c4a2e; padding: 18px; border-radius: 12px; display: flex; align-items: center; gap: 15px; margin-top: 10px; border: 1px dashed #8fbb92; font-family: 'Outfit', sans-serif; }
                 .mb-icon { font-size: 24px; }
@@ -173,26 +174,26 @@ export default function InvestmentPlanView({ acres }) {
                     <tr>
                       <td class="pt-pct">18%</td>
                       <td class="pt-info"><h4>Booking Amount</h4><p>Due immediately to secure the plot</p></td>
-                      <td class="pt-price">${Math.round(downPayment).toLocaleString()}</td>
+                      <td class="pt-price">${Math.round(downPayment).toLocaleString()}<span>PKR</span></td>
                     </tr>
                     <tr>
                       <td class="pt-pct">32%</td>
                       <td class="pt-info"><h4>Month 6 Instalment</h4><p>Second stage of land payment</p></td>
-                      <td class="pt-price">${Math.round(instalment6M).toLocaleString()}</td>
+                      <td class="pt-price">${Math.round(instalment6M).toLocaleString()}<span>PKR</span></td>
                     </tr>
                     <tr>
                       <td class="pt-pct" style="color: #378add">25%</td>
                       <td class="pt-info"><h4>Month 12 Milestone</h4><p>Possession & construction starts!</p></td>
-                      <td class="pt-price">${Math.round(instalment12M).toLocaleString()}</td>
+                      <td class="pt-price">${Math.round(instalment12M).toLocaleString()}<span>PKR</span></td>
                     </tr>
                     <tr>
                       <td class="pt-pct">25%</td>
                       <td class="pt-info"><h4>Month 18 Final</h4><p>Transfer & Registry completion</p></td>
-                      <td class="pt-price">${Math.round(instalment18M).toLocaleString()}</td>
+                      <td class="pt-price">${Math.round(instalment18M).toLocaleString()}<span>PKR</span></td>
                     </tr>
                     <tr style="border: none; background: #fdfbf7;">
                       <td colspan="2" style="text-align: right; font-weight: 600; font-size: 11px; color: #8a8070; padding-top: 25px; text-transform: uppercase; font-family: 'Outfit', sans-serif; letter-spacing: 0.05em;">Land Plan Subtotal:</td>
-                      <td style="text-align: right; font-weight: 700; font-size: 20px; color: #1e3320; padding-top: 25px; font-family: 'Cormorant Garamond', serif;">${totalLandCost.toLocaleString()}</td>
+                      <td style="text-align: right; font-weight: 700; font-size: 20px; color: #1b5235; padding-top: 25px; font-family: 'Outfit', sans-serif;">${totalLandCost.toLocaleString()}<span>PKR</span></td>
                     </tr>
                   </table>
 
