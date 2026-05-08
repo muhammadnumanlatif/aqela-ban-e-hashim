@@ -84,7 +84,7 @@ export default function InvestmentPlanView({ acres }) {
                 </div>
                 <div style="text-align: right">
                    <div style="font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em;">Location</div>
-                   <div style="font-weight: 600; font-size: 16px;">Aqela Ban-e-Hashim</div>
+                   <div style="font-weight: 600; font-size: 16px;">Aqeela-e-Bani Hashim</div>
                 </div>
               </div>
 
