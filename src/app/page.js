@@ -124,6 +124,19 @@ export default function FarmPlanner() {
         {activeTab === 'chart' && <ChartView costs={costs} />}
         {activeTab === 'map' && <MapView acres={acres} />}
       </div>
+
+      <div className="validity-banner" style={{ margin: '40px 30px' }}>
+        <div className="vb-icon">⏱️</div>
+        <div className="vb-content">
+          <h6>Investment Validity Period</h6>
+          <p>
+            Note: The above prices are valid for the <span className="vb-highlight">next 20 days only</span>, due to highly fluctuating market rates in Pakistan.
+            <br />
+            <span className="urgent-bullet">●</span> Land prices will remain unchanged.
+            However, prices for materials, construction, and other quoted items may change after this period.
+          </p>
+        </div>
+      </div>
     </main>
   );
 }
