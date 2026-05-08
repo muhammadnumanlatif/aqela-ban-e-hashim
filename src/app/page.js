@@ -116,12 +116,43 @@ export default function FarmPlanner() {
 }
 
 function BOQView({ costs }) {
+  const col1 = costs.sections.filter(s => s.id <= 3);
+  const col2 = costs.sections.filter(s => s.id > 3);
+
+  const renderSection = (section) => (
+    <div key={`section-${section.id}`} className="boq-section-card">
+      <table className="modern-boq-table">
+        <thead>
+          <tr className="section-header-row">
+            <td colSpan="5">{section.title}</td>
+          </tr>
+          <tr>
+            <th style={{ width: '35px' }}>#</th>
+            <th>Item Name</th>
+            <th>Spec</th>
+            <th className="num">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {section.items.map((item) => (
+            <tr key={item.id} className="item-row">
+              <td className="item-id">{item.id}</td>
+              <td className="item-name">{item.name}</td>
+              <td className="item-spec">{item.spec}</td>
+              <td className="item-total num">{Math.round(item.total).toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
   return (
     <div className="boq-wrapper">
       <div className="boq-header-summary">
         <div className="summary-item">
           <span className="summary-label">Acreage</span>
-          <span className="summary-value">{costs.boundRft ? Math.round(costs.boundRft / 154 * 1).toFixed(0) : 5} Acres</span>
+          <span className="summary-value">{costs.boundRft ? Math.round(costs.boundRft / 15.4).toFixed(0) : 5} Acres</span>
         </div>
         <div className="summary-item">
           <span className="summary-label">Subtotal</span>
@@ -137,61 +168,40 @@ function BOQView({ costs }) {
         </div>
       </div>
 
-      <div className="boq-table-container">
-        <table className="modern-boq-table">
-          <thead>
-            <tr>
-              <th style={{ width: '40px' }}>#</th>
-              <th>Item Name</th>
-              <th>Quantity / Spec</th>
-              <th>Unit Cost (PKR)</th>
-              <th className="num">Total (PKR)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {costs.sections.map((section) => (
-              <>
-                <tr key={`section-${section.id}`} className="section-header-row">
-                  <td colSpan="5">{section.title}</td>
+      <div className="boq-two-col-grid">
+        <div className="boq-column">
+          {col1.map(renderSection)}
+        </div>
+        <div className="boq-column">
+          {col2.map(renderSection)}
+          <div className="boq-section-card overheads-card">
+            <table className="modern-boq-table">
+              <thead>
+                <tr className="section-header-row overheads-header">
+                  <td colSpan="2">7. Project Overheads</td>
                 </tr>
-                {section.items.map((item) => (
-                  <tr key={item.id} className="item-row">
-                    <td className="item-id">{item.id}</td>
-                    <td className="item-name">{item.name}</td>
-                    <td className="item-spec">{item.spec}</td>
-                    <td className="item-unit">{item.unit}</td>
-                    <td className="item-total num">{Math.round(item.total).toLocaleString()}</td>
-                  </tr>
-                ))}
-              </>
-            ))}
-            <tr className="section-header-row overheads-header">
-              <td colSpan="5">7. Project Overheads</td>
-            </tr>
-            <tr className="subtotal-display-row">
-              <td colSpan="4">SUBTOTAL (before overheads)</td>
-              <td className="num">{Math.round(costs.subtotal).toLocaleString()}</td>
-            </tr>
-            <tr className="item-row">
-              <td className="item-id">7.1</td>
-              <td className="item-name">Consultant Fee (9% of Subtotal)</td>
-              <td className="item-spec">0.09 of PKR {Math.round(costs.subtotal).toLocaleString()}</td>
-              <td className="item-unit">9% on subtotal</td>
-              <td className="item-total num">{Math.round(costs.consultant).toLocaleString()}</td>
-            </tr>
-            <tr className="item-row">
-              <td className="item-id">7.2</td>
-              <td className="item-name">Contingency (12% of Subtotal)</td>
-              <td className="item-spec">0.12 of PKR {Math.round(costs.subtotal).toLocaleString()}</td>
-              <td className="item-unit">12% on subtotal</td>
-              <td className="item-total num">{Math.round(costs.contingency).toLocaleString()}</td>
-            </tr>
-            <tr className="grand-total-display-row">
-              <td colSpan="4">GRAND TOTAL (incl. 9% Consultant + 12% Contingency)</td>
-              <td className="num">{Math.round(costs.grand).toLocaleString()}</td>
-            </tr>
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                <tr className="item-row">
+                  <td className="item-name">Consultant Fee (9%)</td>
+                  <td className="item-total num">{Math.round(costs.consultant).toLocaleString()}</td>
+                </tr>
+                <tr className="item-row">
+                  <td className="item-name">Contingency (12%)</td>
+                  <td className="item-total num">{Math.round(costs.contingency).toLocaleString()}</td>
+                </tr>
+                <tr className="subtotal-display-row">
+                  <td>Subtotal</td>
+                  <td className="num">{Math.round(costs.subtotal).toLocaleString()}</td>
+                </tr>
+                <tr className="grand-total-display-row">
+                  <td>GRAND TOTAL</td>
+                  <td className="num">{Math.round(costs.grand).toLocaleString()}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <p className="boq-disclaimer">Legend: [FIXED] = constant | [PER ACRE] = scales linearly | [SCALED] = interpolated | [STEP] = increases in steps</p>
     </div>
