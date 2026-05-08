@@ -22,7 +22,22 @@ export const calcCosts = (a) => {
     boundRft = Math.round(boundRft);
 
     const wall = boundRft * 3300;
-    const fancyWall = interp(1200000, 1848000, a);
+    
+    let fancyWallRft;
+    let fancyWall;
+    if (a <= 1) {
+        fancyWallRft = 180;
+        fancyWall = 432000;
+    } else if (a < 5) {
+        fancyWallRft = 180 + 67.5 * (a - 1);
+        fancyWall = 432000 + 162000 * (a - 1);
+    } else {
+        fancyWallRft = 450 + 67.5 * (a - 5);
+        fancyWall = 1080000 + 162000 * (a - 5);
+    }
+    fancyWallRft = Math.round(fancyWallRft);
+    fancyWall = Math.round(fancyWall);
+
     const gate = 850000;
     
     const b5 = 720000; // 1-acre base roads
@@ -234,7 +249,7 @@ export const calcCosts = (a) => {
             title: "1. Site Infrastructure & Earthworks",
             items: [
                 { id: "1.1", name: "Boundary Wall", spec: `${boundRft} Rft [SCALED]`, unit: "PKR 3,300 / Rft", total: wall },
-                { id: "1.2", name: "Fancy Elevation (Wall)", spec: `${boundRft} Rft [SCALED]`, unit: "Proportional", total: fancyWall },
+                { id: "1.2", name: "Fancy Elevation (Wall)", spec: `${fancyWallRft} Rft [SCALED]`, unit: "PKR 2,400 / Rft", total: fancyWall },
                 { id: "1.3", name: "Main Gate & Security Room", spec: "1 No. [FIXED]", unit: "Lump sum", total: gate },
                 { id: "1.4", name: "Internal Roads", spec: `${a} Acres [SCALED]`, unit: "Scaled rate", total: roads },
                 { id: "1.5", name: "Land Leveling & Grading", spec: `${a} Acres [PER ACRE]`, unit: "PKR 120,000 / Acre", total: leveling },
@@ -297,7 +312,7 @@ export const calcCosts = (a) => {
         production: productionTotal, livestock: livestockTotal,
         subtotal, consultant, contingency, grand,
         animalShedMarla, solarKW, orchardTrees, boundTrees,
-        cowCount, buffCount, boundRft,
+        cowCount, buffCount, boundRft, fancyWallRft,
         sections,
         items: {
             wall, fancyWall, gate, roads, leveling, tubewell, waterTank, rainwater,
