@@ -85,6 +85,66 @@ export default function InvestmentPlanView({ acres }) {
                 .subtotal-row .val span { font-size: 12px; opacity: 0.7; font-weight: 400; margin-left: 4px; }
 
                 .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', sans-serif; flex-wrap: wrap; gap: 15px; }
+                
+                @keyframes pulse-gold {
+                  0% { box-shadow: 0 0 0 0 rgba(200, 160, 80, 0.4); transform: scale(1); }
+                  70% { box-shadow: 0 0 0 15px rgba(200, 160, 80, 0); transform: scale(1.01); }
+                  100% { box-shadow: 0 0 0 0 rgba(200, 160, 80, 0); transform: scale(1); }
+                }
+
+                .validity-banner {
+                  background: linear-gradient(135deg, #1e3320 0%, #2a452d 100%);
+                  color: #fff;
+                  margin: 0 40px 40px 40px;
+                  padding: 25px;
+                  border-radius: 20px;
+                  display: flex;
+                  align-items: center;
+                  gap: 25px;
+                  border: 1px solid rgba(200, 160, 80, 0.3);
+                  animation: pulse-gold 3s infinite ease-in-out;
+                  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                }
+
+                .vb-icon {
+                  width: 60px;
+                  height: 60px;
+                  background: #c8a050;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 28px;
+                  flex-shrink: 0;
+                  color: #1e3320;
+                  box-shadow: 0 4px 15px rgba(200, 160, 80, 0.4);
+                }
+
+                .vb-content h6 {
+                  font-family: 'Outfit', sans-serif;
+                  font-size: 15px;
+                  font-weight: 800;
+                  margin-bottom: 6px;
+                  color: #c8a050;
+                  text-transform: uppercase;
+                  letter-spacing: 0.12em;
+                }
+
+                .vb-content p {
+                  font-size: 13px;
+                  line-height: 1.6;
+                  color: rgba(255,255,255,0.9);
+                  font-family: 'Outfit', sans-serif;
+                  font-weight: 400;
+                }
+
+                .vb-highlight {
+                  color: #fff;
+                  font-weight: 700;
+                  text-decoration: underline;
+                  text-decoration-color: #c8a050;
+                  text-underline-offset: 3px;
+                }
                 .brand { font-size: 13px; opacity: 0.8; font-weight: 400; }
                 .brand b { color: #8fbb92; font-weight: 600; }
                 .contact { font-size: 10px; text-align: right; opacity: 0.5; font-weight: 300; line-height: 1.5; }
@@ -263,6 +323,20 @@ export default function InvestmentPlanView({ acres }) {
                       <div class="val">${Math.round(totalConst).toLocaleString()}<span>PKR</span></div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div class="validity-banner">
+                <div class="vb-icon">⏱️</div>
+                <div class="vb-content">
+                  <h6>Investment Validity Period</h6>
+                  <p>
+                    Note: The above prices are valid for the <span class="vb-highlight">next 20 days only</span>, due to highly fluctuating market rates in Pakistan.
+                    <br />
+                    <span class="urgent-text" style="color: #8fbb92; font-weight: 700;">● Land prices will remain unchanged.</span>
+                    <br />
+                    However, prices for materials, construction, and other quoted items may change after this period.
+                  </p>
                 </div>
               </div>
 
