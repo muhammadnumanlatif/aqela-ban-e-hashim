@@ -326,20 +326,6 @@ export default function InvestmentPlanView({ acres }) {
                 </div>
               </div>
 
-              <div class="validity-banner">
-                <div class="vb-icon">⏱️</div>
-                <div class="vb-content">
-                  <h6>Investment Validity Period</h6>
-                  <p>
-                    Note: The above prices are valid for the <span class="vb-highlight">next 20 days only</span>, due to highly fluctuating market rates in Pakistan.
-                    <br />
-                    <span class="urgent-text" style="color: #8fbb92; font-weight: 700;">● Land prices will remain unchanged.</span>
-                    <br />
-                    However, prices for materials, construction, and other quoted items may change after this period.
-                  </p>
-                </div>
-              </div>
-
               <div class="footer">
                 <div class="brand">ARB Farms × <b>Ahmro Global</b></div>
                 <div class="contact">This is a dynamic estimate based on current market rates. <br> Final cost subject to site-specific conditions.</div>
