@@ -29,50 +29,58 @@ export default function InvestmentPlanView({ acres }) {
           <html>
             <head>
               <style>
-                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;600;700&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+                
                 * { box-sizing: border-box; margin: 0; padding: 0; }
                 body { background: #fdfbf7; font-family: 'Outfit', sans-serif; color: #1e3320; }
                 
                 .hero { background: #1e3320; color: #fff; padding: 35px 40px; display: flex; justify-content: space-between; align-items: center; }
-                .hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; }
-                .hero-left p { opacity: 0.7; font-size: 13px; }
-                .acres-tag { background: #8fbb92; color: #1e3320; padding: 5px 15px; border-radius: 50px; font-weight: 700; font-size: 13px; margin-top: 8px; display: inline-block; }
+                .hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; letter-spacing: -0.01em; }
+                .hero-left p { font-family: 'Outfit', sans-serif; opacity: 0.7; font-size: 13px; font-weight: 400; margin-top: 4px; }
+                .acres-tag { background: #8fbb92; color: #1e3320; padding: 5px 15px; border-radius: 50px; font-weight: 600; font-size: 12px; margin-top: 10px; display: inline-block; font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
                 
                 .total-investment-bar { background: #f5f2ec; padding: 15px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #ede8df; }
-                .tib-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #8a8070; }
-                .tib-item .val { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #1e3320; }
+                .tib-item .lbl { font-family: 'Outfit', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #8a8070; font-weight: 500; }
+                .tib-item .val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: #1e3320; line-height: 1.1; }
 
                 .main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
                 
-                .column-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1.5px solid #ede8df; }
-                .column-title span { background: #1e3320; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; }
+                .column-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1.5px solid #ede8df; color: #1e3320; }
+                .column-title span { background: #1e3320; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; font-weight: 600; }
 
                 .payment-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
                 .payment-table tr { border-bottom: 1px solid #f0ede8; }
-                .payment-table td { padding: 12px 0; }
-                .pt-pct { font-weight: 700; color: #2c4a2e; width: 60px; font-size: 14px; }
-                .pt-info { font-size: 13px; }
-                .pt-info h4 { font-size: 14px; color: #1e3320; }
-                .pt-info p { color: #8a8070; font-size: 11px; }
-                .pt-price { text-align: right; font-weight: 600; color: #1e3320; font-size: 14px; }
+                .payment-table td { padding: 14px 0; vertical-align: middle; }
+                .pt-pct { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: #2c4a2e; width: 65px; font-size: 20px; }
+                .pt-info { font-family: 'Outfit', sans-serif; }
+                .pt-info h4 { font-size: 14px; color: #1e3320; font-weight: 600; }
+                .pt-info p { color: #8a8070; font-size: 11px; font-weight: 400; margin-top: 2px; }
+                .pt-price { font-family: 'Cormorant Garamond', serif; text-align: right; font-weight: 700; color: #1e3320; font-size: 17px; }
                 
-                .milestone-badge { background: #eaf3eb; color: #2c4a2e; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; margin-top: 10px; border: 1px dashed #8fbb92; }
+                .milestone-badge { background: #eaf3eb; color: #2c4a2e; padding: 18px; border-radius: 12px; display: flex; align-items: center; gap: 15px; margin-top: 10px; border: 1px dashed #8fbb92; font-family: 'Outfit', sans-serif; }
                 .mb-icon { font-size: 24px; }
-                .mb-text h5 { font-size: 13px; font-weight: 700; }
-                .mb-text p { font-size: 11px; color: #5a5040; line-height: 1.4; }
+                .mb-text h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+                .mb-text p { font-size: 11px; color: #5a5040; line-height: 1.5; font-weight: 400; }
 
-                .construction-step { display: flex; gap: 15px; margin-bottom: 20px; }
-                .cs-icon { width: 40px; height: 40px; background: #fff; border: 1px solid #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+                .construction-step { display: flex; gap: 15px; margin-bottom: 22px; font-family: 'Outfit', sans-serif; }
+                .cs-icon { width: 42px; height: 42px; background: #fff; border: 1px solid #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
                 .cs-info { flex: 1; }
-                .cs-info h4 { font-size: 13px; margin-bottom: 4px; }
+                .cs-info h4 { font-size: 13px; margin-bottom: 6px; font-weight: 600; color: #1e3320; }
                 .cs-bar-wrap { height: 6px; background: #f0ede8; border-radius: 3px; margin: 8px 0; overflow: hidden; }
                 .cs-bar { height: 100%; border-radius: 3px; }
-                .cs-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 600; text-transform: uppercase; }
+                .cs-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+                .cs-footer .cost { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 700; color: #1e3320; letter-spacing: 0; }
 
-                .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; }
-                .brand { font-size: 14px; opacity: 0.8; }
-                .brand b { color: #8fbb92; }
-                .contact { font-size: 11px; text-align: right; opacity: 0.6; }
+                .subtotal-box { margin-top: 30px; padding: 22px; background: #fff; border-radius: 16px; border: 1.5px solid #1e3320; font-family: 'Outfit', sans-serif; }
+                .subtotal-lbl { font-size: 10px; font-weight: 700; color: #8a8070; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+                .subtotal-row { display: flex; justify-content: space-between; align-items: baseline; }
+                .subtotal-row .text { font-size: 13px; color: #1e3320; font-weight: 500; }
+                .subtotal-row .val { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #1e3320; }
+
+                .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', sans-serif; }
+                .brand { font-size: 13px; opacity: 0.8; font-weight: 400; }
+                .brand b { color: #8fbb92; font-weight: 600; }
+                .contact { font-size: 10px; text-align: right; opacity: 0.5; font-weight: 300; line-height: 1.5; }
               </style>
             </head>
             <body>
@@ -82,9 +90,9 @@ export default function InvestmentPlanView({ acres }) {
                   <p>A simple step-by-step roadmap for your agricultural future.</p>
                   <div class="acres-tag">Project Size: ${acres} Acres</div>
                 </div>
-                <div style="text-align: right">
-                   <div style="font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em;">Location</div>
-                   <div style="font-weight: 600; font-size: 16px;">Aqeela-e-Bani Hashim</div>
+                <div style="text-align: right; font-family: 'Outfit', sans-serif;">
+                   <div style="font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500;">Project Site</div>
+                   <div style="font-weight: 600; font-size: 16px; font-family: 'Cormorant Garamond', serif; letter-spacing: 0.02em;">Aqeela-e-Bani Hashim</div>
                 </div>
               </div>
 
@@ -94,12 +102,12 @@ export default function InvestmentPlanView({ acres }) {
                   <div class="val">${totalLandCost.toLocaleString()}</div>
                 </div>
                 <div class="tib-item">
-                  <div class="lbl">Construction Subtotal</div>
+                  <div class="lbl">OFF Grid Subtotal</div>
                   <div class="val">${Math.round(totalConst).toLocaleString()}</div>
                 </div>
                 <div class="tib-item" style="border-left: 2px solid #8fbb92; padding-left: 30px;">
                   <div class="lbl" style="color: #2c4a2e; font-weight: 700;">Grand Total Investment</div>
-                  <div class="val" style="color: #2c4a2e;">${Math.round(totalLandCost + totalConst).toLocaleString()} PKR</div>
+                  <div class="val" style="color: #2c4a2e;">${Math.round(totalLandCost + totalConst).toLocaleString()} <span style="font-size: 14px; font-weight: 500; font-family: 'Outfit';">PKR</span></div>
                 </div>
               </div>
 
@@ -130,8 +138,8 @@ export default function InvestmentPlanView({ acres }) {
                       <td class="pt-price">${Math.round(instalment18M).toLocaleString()}</td>
                     </tr>
                     <tr style="border: none; background: #fdfbf7;">
-                      <td colspan="2" style="text-align: right; font-weight: 700; font-size: 11px; color: #8a8070; padding-top: 20px; text-transform: uppercase;">Land Plan Subtotal:</td>
-                      <td style="text-align: right; font-weight: 700; font-size: 16px; color: #1e3320; padding-top: 20px;">${totalLandCost.toLocaleString()}</td>
+                      <td colspan="2" style="text-align: right; font-weight: 600; font-size: 11px; color: #8a8070; padding-top: 25px; text-transform: uppercase; font-family: 'Outfit', sans-serif; letter-spacing: 0.05em;">Land Plan Subtotal:</td>
+                      <td style="text-align: right; font-weight: 700; font-size: 20px; color: #1e3320; padding-top: 25px; font-family: 'Cormorant Garamond', serif;">${totalLandCost.toLocaleString()}</td>
                     </tr>
                   </table>
 
@@ -161,7 +169,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 1: Foundations & Earthworks</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #378add;"></div></div>
-                      <div class="cs-footer"><span>Month 13-15</span> <span>PKR ${Math.round(p1).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 13-15</span> <span class="cost">PKR ${Math.round(p1).toLocaleString()}</span></div>
                     </div>
                   </div>
 
@@ -170,7 +178,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 2: Core Grey Structure</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #1e3320;"></div></div>
-                      <div class="cs-footer"><span>Month 16-20</span> <span>PKR ${Math.round(p2).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 16-20</span> <span class="cost">PKR ${Math.round(p2).toLocaleString()}</span></div>
                     </div>
                   </div>
 
@@ -179,7 +187,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 3: MEP & Utility Installations</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #8fbb92;"></div></div>
-                      <div class="cs-footer"><span>Month 21-24</span> <span>PKR ${Math.round(p3).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 21-24</span> <span class="cost">PKR ${Math.round(p3).toLocaleString()}</span></div>
                     </div>
                   </div>
 
@@ -188,15 +196,15 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 4: Finishing & Plantation</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #c8a050;"></div></div>
-                      <div class="cs-footer"><span>Month 25-30</span> <span>PKR ${Math.round(p4).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 25-30</span> <span class="cost">PKR ${Math.round(p4).toLocaleString()}</span></div>
                     </div>
                   </div>
 
-                  <div style="margin-top: 30px; padding: 20px; background: #fff; border-radius: 16px; border: 1.5px solid #1e3320;">
-                    <div style="font-size: 11px; font-weight: 700; color: #8a8070; margin-bottom: 5px; text-transform: uppercase;">Construction Subtotal</div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-                      <div style="font-size: 12px; color: #1e3320; font-weight: 500;">Assets & Finishing Total</div>
-                      <div style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #1e3320;">${Math.round(totalConst).toLocaleString()}</div>
+                  <div class="subtotal-box">
+                    <div class="subtotal-lbl">Construction Subtotal</div>
+                    <div class="subtotal-row">
+                      <div class="text">Assets & Finishing Total</div>
+                      <div class="val">${Math.round(totalConst).toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
