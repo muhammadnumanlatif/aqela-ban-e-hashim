@@ -149,25 +149,6 @@ function BOQView({ costs }) {
 
   return (
     <div className="boq-wrapper">
-      <div className="boq-header-summary">
-        <div className="summary-item">
-          <span className="summary-label">Acreage</span>
-          <span className="summary-value">{costs.boundRft ? Math.round(costs.boundRft / 15.4).toFixed(0) : 5} Acres</span>
-        </div>
-        <div className="summary-item">
-          <span className="summary-label">Subtotal</span>
-          <span className="summary-value">{costs.subtotal.toLocaleString()}</span>
-        </div>
-        <div className="summary-item">
-          <span className="summary-label">Overheads 21%</span>
-          <span className="summary-value">{(costs.consultant + costs.contingency).toLocaleString()}</span>
-        </div>
-        <div className="summary-item featured">
-          <span className="summary-label">Grand Total</span>
-          <span className="summary-value">{costs.grand.toLocaleString()}</span>
-        </div>
-      </div>
-
       <div className="boq-two-col-grid">
         <div className="boq-column">
           {col1.map(renderSection)}
