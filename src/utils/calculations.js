@@ -23,19 +23,15 @@ export const calcCosts = (a) => {
 
     const wall = boundRft * 3300;
     
-    let fancyWallRft;
+    let fancyWallRft = boundRft;
     let fancyWall;
     if (a <= 1) {
-        fancyWallRft = 180;
-        fancyWall = 432000;
+        fancyWall = 1200000;
     } else if (a < 5) {
-        fancyWallRft = 180 + 67.5 * (a - 1);
-        fancyWall = 432000 + 162000 * (a - 1);
+        fancyWall = 1200000 + 162000 * (a - 1);
     } else {
-        fancyWallRft = 450 + 67.5 * (a - 5);
-        fancyWall = 1080000 + 162000 * (a - 5);
+        fancyWall = 1848000 + 162000 * (a - 5);
     }
-    fancyWallRft = Math.round(fancyWallRft);
     fancyWall = Math.round(fancyWall);
 
     const gate = 850000;
