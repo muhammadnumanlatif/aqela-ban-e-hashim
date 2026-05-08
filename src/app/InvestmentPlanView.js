@@ -1,10 +1,8 @@
 
 "use client";
 
-import { fmt, fmtM } from "@/utils/calculations";
-
 export default function InvestmentPlanView({ acres }) {
-  // Land Calculations (160 Marla per Acre)
+  // Simple Math for Land
   const landRate = 72000;
   const totalLandCost = acres * 160 * landRate;
   
@@ -13,10 +11,9 @@ export default function InvestmentPlanView({ acres }) {
   const instalment12M = totalLandCost * 0.25;
   const instalment18M = totalLandCost * 0.25;
 
-  // Construction Calculations (Interpolated from base values)
-  // These roughly match the logic in calculations.js but formatted for this view
+  // Simple Math for Construction
   const interpVal = (v1, v5, a) => {
-    const factor = Math.log(a) / Math.log(5); // Normalized to 5 acres for this specific view's interpolation
+    const factor = Math.log(a) / Math.log(5);
     return v1 + (v5 - v1) * factor;
   };
 
@@ -27,113 +24,138 @@ export default function InvestmentPlanView({ acres }) {
   const totalConst = p1 + p2 + p3 + p4;
 
   return (
-    <div className="investment-plan-container" style={{ margin: '20px 0', overflow: 'hidden', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+    <div className="investment-plan-container" style={{ margin: '20px 0', overflow: 'hidden', borderRadius: '24px', boxShadow: '0 20px 50px rgba(0,0,0,0.15)', background: '#fff' }}>
       <iframe 
         srcDoc={`
           <html>
             <head>
               <style>
-                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;600;700&display=swap');
                 * { box-sizing: border-box; margin: 0; padding: 0; }
-                body { background: #F5F2EC; font-family: 'Outfit', sans-serif; }
-                .ig { background: #F5F2EC; overflow: hidden; max-width: 100%; margin: 0 auto; }
-                .ig-header { background: #1E3320; padding: 20px 28px 18px; display: flex; justify-content: space-between; align-items: flex-end; }
-                .ig-pre { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
-                .ig-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.2; }
-                .ig-title span { color: #8FBB92; }
-                .ig-header-right { text-align: right; }
-                .ig-rate-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
-                .ig-rate-val { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: #C8E6C9; }
+                body { background: #fdfbf7; font-family: 'Outfit', sans-serif; color: #1e3320; }
                 
-                .active-plan-header { background: #fff; border-bottom: 1px solid #E0D9CE; padding: 15px 28px; display: flex; justify-content: space-between; align-items: center; }
-                .ap-label { font-size: 11px; font-weight: 700; color: #1E3320; text-transform: uppercase; letter-spacing: 0.1em; }
-                .ap-value { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: #2C4A2E; }
+                .hero { background: #1e3320; color: #fff; padding: 40px 30px; text-align: center; }
+                .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; margin-bottom: 10px; }
+                .hero p { opacity: 0.8; font-size: 14px; letter-spacing: 0.05em; }
+                
+                .acres-badge { display: inline-block; background: #8fbb92; color: #1e3320; padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 14px; margin-top: 15px; }
 
-                .section-label { display: flex; align-items: center; gap: 8px; padding: 20px 28px 10px; }
-                .sl-line { flex: 1; height: 0.5px; background: #C8C0B0; }
-                .sl-text { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8070; font-weight: 500; white-space: nowrap; }
-                
-                .dynamic-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; padding: 10px 28px; }
-                .dyn-card { background: #fff; border: 1.5px solid #2C4A2E; border-radius: 12px; padding: 15px; }
-                .dyn-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: #1E3320; margin-bottom: 12px; border-bottom: 1px solid #EDE8DF; padding-bottom: 8px; }
-                .dyn-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; }
-                .dyn-lbl { color: #7A7060; }
-                .dyn-val { font-weight: 600; color: #1A2E1B; }
-                
-                .steps-strip { margin: 15px 28px; background: #1E3320; border-radius: 10px; padding: 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-                .step-item { text-align: center; }
-                .step-pct { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: #fff; }
-                .step-lbl { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 4px; }
-                
-                .ig-footer { background: #1E3320; padding: 12px 28px; display: flex; justify-content: space-between; align-items: center; }
-                .footer-brand { display: flex; align-items: center; gap: 10px; }
-                .fb-arb { font-size: 12px; font-weight: 700; color: #fff; }
-                .fb-ahmro { font-size: 11px; font-weight: 500; color: #8FBB92; }
-                .footer-note { font-size: 10px; color: rgba(255,255,255,0.4); }
+                .big-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+                .big-card { background: #fff; border-radius: 20px; padding: 25px; border: 2px solid #eee; position: relative; }
+                .big-card.green { border-color: #8fbb92; }
+                .big-card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #8a8070; margin-bottom: 10px; }
+                .big-card .price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: #1e3320; }
+                .big-card .emoji { position: absolute; top: 20px; right: 20px; font-size: 24px; }
+
+                .timeline { padding: 0 30px 40px; }
+                .section-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+                .section-title span { background: #1e3320; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; }
+
+                .steps { position: relative; display: flex; flex-direction: column; gap: 15px; }
+                .step { display: flex; gap: 20px; align-items: center; background: #fff; padding: 15px 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f0ede8; }
+                .step-icon { width: 50px; height: 50px; background: #f5f2ec; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+                .step-info { flex: 1; }
+                .step-info h3 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+                .step-info p { font-size: 12px; color: #7a7060; }
+                .step-cost { text-align: right; }
+                .step-cost .val { font-weight: 700; font-size: 14px; color: #1e3320; }
+                .step-cost .lbl { font-size: 10px; color: #9a8f80; text-transform: uppercase; }
+
+                .arrow { text-align: center; color: #c8c0b0; font-size: 18px; margin: -5px 0; }
+
+                .footer { background: #f5f2ec; padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 24px 24px; }
+                .brand { font-weight: 700; font-size: 16px; }
+                .brand span { color: #8fbb92; }
+                .total-box { text-align: right; }
+                .total-box .total-lbl { font-size: 10px; text-transform: uppercase; color: #7a7060; }
+                .total-box .total-val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; }
               </style>
             </head>
             <body>
-              <div class="ig">
-                <div class="ig-header">
-                  <div class="ig-header-left">
-                    <div class="ig-pre">ARB. Farms × Ahmro Global</div>
-                    <div class="ig-title">Dynamic Investment<br><span>Plan for ${acres} Acres</span></div>
+              <div class="hero">
+                <h1>My Dream Farm Plan 🏡</h1>
+                <p>Everything you need to know about buying and building your farm!</p>
+                <div class="acres-badge">Size: ${acres} Acres</div>
+              </div>
+
+              <div class="big-cards">
+                <div class="big-card green">
+                  <div class="emoji">🗺️</div>
+                  <h2>Ground Price</h2>
+                  <div class="price">${totalLandCost.toLocaleString()} PKR</div>
+                </div>
+                <div class="big-card">
+                  <div class="emoji">🏗️</div>
+                  <h2>Building Cost</h2>
+                  <div class="price">${Math.round(totalConst).toLocaleString()} PKR</div>
+                </div>
+              </div>
+
+              <div class="timeline">
+                <div class="section-title"><span>1</span> Step 1: Paying for the Land</div>
+                <div class="steps">
+                  <div class="step">
+                    <div class="step-icon">🤝</div>
+                    <div class="step-info"><h3>The Handshake (Down Payment)</h3><p>You pay this to start your journey today!</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(downPayment).toLocaleString()}</div><div class="lbl">18% Now</div></div>
                   </div>
-                  <div class="ig-header-right">
-                    <div class="ig-rate-lbl">Land rate</div>
-                    <div class="ig-rate-val">PKR 72,000 / Marla</div>
+                  <div class="arrow">↓</div>
+                  <div class="step">
+                    <div class="step-icon">⏳</div>
+                    <div class="step-info"><h3>First Pocket Money</h3><p>Paid after 6 months of being a farm owner.</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(instalment6M).toLocaleString()}</div><div class="lbl">M6 Payment</div></div>
+                  </div>
+                  <div class="arrow">↓</div>
+                  <div class="step" style="border-left: 4px solid #378add">
+                    <div class="step-icon">🔑</div>
+                    <div class="step-info"><h3>Get the Keys!</h3><p>After 12 months, you can start building your house!</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(instalment12M).toLocaleString()}</div><div class="lbl">M12 Payment</div></div>
+                  </div>
+                  <div class="arrow">↓</div>
+                  <div class="step">
+                    <div class="step-icon">📝</div>
+                    <div class="step-info"><h3>The Final Paperwork</h3><p>The last payment. The land is officially yours forever!</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(instalment18M).toLocaleString()}</div><div class="lbl">M18 Finish</div></div>
                   </div>
                 </div>
 
-                <div class="active-plan-header">
-                  <div>
-                    <div class="ap-label">Total Land Value</div>
-                    <div class="ap-value">${totalLandCost.toLocaleString()} PKR</div>
+                <div class="section-title" style="margin-top: 40px"><span>2</span> Step 2: Building the Fun Stuff</div>
+                <div class="steps">
+                  <div class="step">
+                    <div class="step-icon">🧱</div>
+                    <div class="step-info"><h3>Strong Foundations</h3><p>Digging the ground and making it solid.</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(p1).toLocaleString()}</div><div class="lbl">Phase 1</div></div>
                   </div>
-                  <div style="text-align: right">
-                    <div class="ap-label">Construction Cost</div>
-                    <div class="ap-value">${Math.round(totalConst).toLocaleString()} PKR</div>
+                  <div class="step">
+                    <div class="step-icon">🏠</div>
+                    <div class="step-info"><h3>Walls & Roof</h3><p>Your house and animal sheds start to look real!</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(p2).toLocaleString()}</div><div class="lbl">Phase 2</div></div>
                   </div>
-                </div>
-
-                <div class="section-label"><div class="sl-line"></div><div class="sl-text">Step 1 — Land Payment Schedule</div><div class="sl-line"></div></div>
-                <div class="dynamic-grid">
-                  <div class="dyn-card">
-                    <div class="dyn-title">Payment Breakdown</div>
-                    <div class="dyn-row"><span class="dyn-lbl">Booking / Down Payment (18%)</span><span class="dyn-val">${Math.round(downPayment).toLocaleString()}</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Month 6 Instalment (32%)</span><span class="dyn-val">${Math.round(instalment6M).toLocaleString()}</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Month 12 Instalment (25%)</span><span class="dyn-val">${Math.round(instalment12M).toLocaleString()}</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Month 18 (Final 25%)</span><span class="dyn-val">${Math.round(instalment18M).toLocaleString()}</span></div>
+                  <div class="step">
+                    <div class="step-icon">⚡</div>
+                    <div class="step-info"><h3>Power & Water</h3><p>Adding solar panels and water for the cows.</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(p3).toLocaleString()}</div><div class="lbl">Phase 3</div></div>
                   </div>
-                  <div class="dyn-card" style="border-color: #378ADD">
-                    <div class="dyn-title" style="color: #378ADD">Milestones</div>
-                    <div class="dyn-row"><span class="dyn-lbl">Possession</span><span class="dyn-val">M 12</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Construction Start</span><span class="dyn-val">M 12</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Registry</span><span class="dyn-val">M 18</span></div>
+                  <div class="step">
+                    <div class="step-icon">✨</div>
+                    <div class="step-info"><h3>The Final Polish</h3><p>Painting, planting trees, and moving in!</p></div>
+                    <div class="step-cost"><div class="val">${Math.round(p4).toLocaleString()}</div><div class="lbl">Phase 4</div></div>
                   </div>
                 </div>
+              </div>
 
-                <div class="section-label"><div class="sl-line"></div><div class="sl-text">Step 2 — Construction Phases</div><div class="sl-line"></div></div>
-                <div class="dynamic-grid">
-                   <div class="dyn-card" style="grid-column: span 2">
-                    <div class="dyn-title">Phased Expenditure</div>
-                    <div class="dyn-row"><span class="dyn-lbl">Phase 1 — Foundations (Months 0-3)</span><span class="dyn-val">${Math.round(p1).toLocaleString()}</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Phase 2 — Core Structure (Months 4-8)</span><span class="dyn-val">${Math.round(p2).toLocaleString()}</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Phase 3 — Installations (Months 9-14)</span><span class="dyn-val">${Math.round(p3).toLocaleString()}</span></div>
-                    <div class="dyn-row"><span class="dyn-lbl">Phase 4 — Finishing (Months 15-24)</span><span class="dyn-val">${Math.round(p4).toLocaleString()}</span></div>
-                  </div>
-                </div>
-
-                <div class="ig-footer">
-                  <div class="footer-brand"><div class="fb-arb">ARB. Farms</div><div class="fb-ahmro">Ahmro Global</div></div>
-                  <div class="footer-note">Combined Estimate: ${Math.round(totalLandCost + totalConst).toLocaleString()} PKR</div>
+              <div class="footer">
+                <div class="brand">ARB Farms × <span>Ahmro Global</span></div>
+                <div class="total-box">
+                  <div class="total-lbl">Total Investment</div>
+                  <div class="total-val">${Math.round(totalLandCost + totalConst).toLocaleString()} PKR</div>
                 </div>
               </div>
             </body>
           </html>
         `}
-        style={{ width: '100%', height: '650px', border: 'none' }}
-        title="Investor Infographic"
+        style={{ width: '100%', height: '1100px', border: 'none' }}
+        title="Simple Investment Plan"
       />
     </div>
   );
