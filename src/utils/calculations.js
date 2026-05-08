@@ -89,8 +89,27 @@ export const calcCosts = (a) => {
     const buildingsTotal = house + animalShed + fodder + greenhouse;
 
     // 3. Energy & Utilities
-    const solarKW = Math.round(interp(5, 15, a));
-    const solar = interp(1200000, 2600000, a);
+    let solarKW;
+    if (a <= 1) {
+        solarKW = 5;
+    } else if (a < 5) {
+        solarKW = 5 + 2.5 * (a - 1);
+    } else {
+        solarKW = 15 + 2.5 * (a - 5);
+    }
+    solarKW = Math.round(solarKW);
+
+    const bSolar = 1200000; // 1-acre base solar
+    const cSolar = 2600000; // 5-acre base solar
+    let solar;
+    if (a <= 1) {
+        solar = bSolar;
+    } else if (a < 5) {
+        solar = bSolar + 350000 * (a - 1);
+    } else {
+        solar = cSolar + 350000 * (a - 5);
+    }
+    solar = Math.round(solar);
     const biogas = interp(500000, 950000, a);
     const electrification = interp(600000, 1200000, a);
     const energyTotal = solar + biogas + electrification;
