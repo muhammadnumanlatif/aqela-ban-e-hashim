@@ -95,6 +95,7 @@ export default function FarmPlanner() {
       </div>
 
       <nav className="tabs-nav">
+        <button className={`tab-btn ${activeTab === 'investment' ? 'active' : ''}`} onClick={() => setActiveTab('investment')}>Investment Plan</button>
         <button className={`tab-btn ${activeTab === 'boq' ? 'active' : ''}`} onClick={() => setActiveTab('boq')}>Bill of Quantities (BOQ)</button>
         <button className={`tab-btn ${activeTab === 'phases' ? 'active' : ''}`} onClick={() => setActiveTab('phases')}>Implementation Phases</button>
         <button className={`tab-btn ${activeTab === 'chart' ? 'active' : ''}`} onClick={() => setActiveTab('chart')}>Cost Analysis</button>
@@ -102,6 +103,7 @@ export default function FarmPlanner() {
       </nav>
 
       <div className="tab-content">
+        {activeTab === 'investment' && <InvestmentPlanView />}
         {activeTab === 'boq' && (
           <div className="boq-container">
             <BOQView costs={costs} />
