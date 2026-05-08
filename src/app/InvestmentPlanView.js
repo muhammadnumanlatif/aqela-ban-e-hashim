@@ -73,14 +73,16 @@ export default function InvestmentPlanView({ acres }) {
                 .cs-info h4 { font-size: 13px; margin-bottom: 6px; font-weight: 600; color: #1e3320; }
                 .cs-bar-wrap { height: 6px; background: #f0ede8; border-radius: 3px; margin: 8px 0; overflow: hidden; }
                 .cs-bar { height: 100%; border-radius: 3px; }
-                .cs-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-                .cs-footer .cost { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 700; color: #1e3320; letter-spacing: 0; }
+                .cs-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+                .cs-footer .cost { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #1b5235; letter-spacing: 0; }
+                .cs-footer .cost span { font-size: 10px; opacity: 0.7; font-weight: 400; margin-left: 3px; }
 
-                .subtotal-box { margin-top: 30px; padding: 22px; background: #fff; border-radius: 16px; border: 1.5px solid #1e3320; font-family: 'Outfit', sans-serif; }
-                .subtotal-lbl { font-size: 10px; font-weight: 700; color: #8a8070; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+                .subtotal-box { margin-top: 30px; padding: 22px; background: #f8fafc; border-radius: 16px; border: 1.5px solid #1b5235; font-family: 'Outfit', sans-serif; }
+                .subtotal-lbl { font-size: 10px; font-weight: 700; color: #1b5235; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em; }
                 .subtotal-row { display: flex; justify-content: space-between; align-items: baseline; }
-                .subtotal-row .text { font-size: 13px; color: #1e3320; font-weight: 500; }
-                .subtotal-row .val { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #1e3320; }
+                .subtotal-row .text { font-size: 13px; color: #1e3320; font-weight: 600; }
+                .subtotal-row .val { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: #1b5235; }
+                .subtotal-row .val span { font-size: 12px; opacity: 0.7; font-weight: 400; margin-left: 4px; }
 
                 .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', sans-serif; flex-wrap: wrap; gap: 15px; }
                 .brand { font-size: 13px; opacity: 0.8; font-weight: 400; }
@@ -223,7 +225,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 1: Foundations & Earthworks</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #378add;"></div></div>
-                      <div class="cs-footer"><span>Month 13-15</span> <span class="cost">PKR ${Math.round(p1).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 13-15</span> <span class="cost">${Math.round(p1).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -232,7 +234,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 2: Core Grey Structure</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #1e3320;"></div></div>
-                      <div class="cs-footer"><span>Month 16-20</span> <span class="cost">PKR ${Math.round(p2).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 16-20</span> <span class="cost">${Math.round(p2).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -241,7 +243,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 3: MEP & Utility Installations</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #8fbb92;"></div></div>
-                      <div class="cs-footer"><span>Month 21-24</span> <span class="cost">PKR ${Math.round(p3).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 21-24</span> <span class="cost">${Math.round(p3).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -250,7 +252,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 4: Finishing & Plantation</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #c8a050;"></div></div>
-                      <div class="cs-footer"><span>Month 25-30</span> <span class="cost">PKR ${Math.round(p4).toLocaleString()}</span></div>
+                      <div class="cs-footer"><span>Month 25-30</span> <span class="cost">${Math.round(p4).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -258,7 +260,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="subtotal-lbl">Construction Subtotal</div>
                     <div class="subtotal-row">
                       <div class="text">Assets & Finishing Total</div>
-                      <div class="val">${Math.round(totalConst).toLocaleString()}</div>
+                      <div class="val">${Math.round(totalConst).toLocaleString()}<span>PKR</span></div>
                     </div>
                   </div>
                 </div>
