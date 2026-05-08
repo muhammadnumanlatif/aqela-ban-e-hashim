@@ -40,7 +40,7 @@ export default function FarmPlanner() {
     <main className="app-container">
       <header>
         <div className="logo-container logo-left">
-          <Image src="/ahmro-global-logo.png" alt="Ahmro Global Logo" width={150} height={50} priority />
+          <Image src="/ahmro-global-logo.png" alt="Ahmro Global Logo" width={200} height={70} priority />
         </div>
         <div className="header-title">
           <p className="project-name">Aqeela-e-Bani Hashim</p>
@@ -48,7 +48,7 @@ export default function FarmPlanner() {
           <h1>OFF Grid Farming Solution</h1>
         </div>
         <div className="logo-container logo-right">
-          <Image src="/arb-farms-logo.jpeg" alt="ARB Farms Logo" width={150} height={50} priority />
+          <Image src="/arb-farms-logo.jpeg" alt="ARB Farms Logo" width={200} height={70} priority />
         </div>
       </header>
 
