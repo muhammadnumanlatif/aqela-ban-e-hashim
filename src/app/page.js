@@ -132,6 +132,7 @@ function BOQView({ costs }) {
             <th style={{ width: '35px' }}>#</th>
             <th>Item Name</th>
             <th>Spec</th>
+            <th>Unit Cost (PKR)</th>
             <th className="num">Total</th>
           </tr>
         </thead>
@@ -141,6 +142,7 @@ function BOQView({ costs }) {
               <td className="item-id">{item.id}</td>
               <td className="item-name">{item.name}</td>
               <td className="item-spec">{item.spec}</td>
+              <td className="item-unit">{item.unit}</td>
               <td className="item-total num">{Math.round(item.total).toLocaleString()}</td>
             </tr>
           ))}
