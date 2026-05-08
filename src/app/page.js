@@ -103,7 +103,7 @@ export default function FarmPlanner() {
       </nav>
 
       <div className="tab-content">
-        {activeTab === 'investment' && <InvestmentPlanView />}
+        {activeTab === 'investment' && <InvestmentPlanView acres={acres} />}
         {activeTab === 'boq' && (
           <div className="boq-container">
             <BOQView costs={costs} />
