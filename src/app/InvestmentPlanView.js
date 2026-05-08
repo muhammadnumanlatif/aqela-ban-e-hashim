@@ -73,6 +73,9 @@ export default function InvestmentPlanView() {
                 .fb-arb { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
                 .fb-ahmro { font-size: 11px; font-weight: 500; color: #8FBB92; }
                 .footer-note { font-size: 10px; color: rgba(255,255,255,0.4); }
+                .legend { display: flex; align-items: center; gap: 14px; padding: 8px 20px 4px; flex-wrap: wrap; }
+                .leg-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #7A7060; }
+                .leg-dot { width: 8px; height: 8px; border-radius: 2px; }
               </style>
             </head>
             <body>
@@ -87,6 +90,7 @@ export default function InvestmentPlanView() {
                     <div class="ig-rate-val">PKR 72,000 / Marla</div>
                   </div>
                 </div>
+
                 <div class="section-label"><div class="sl-line"></div><div class="sl-text">Step 1 — Choose your plot &amp; land payment</div><div class="sl-line"></div></div>
                 <div class="plots-grid">
                   <div class="plot-card"><div class="pc-head"><div class="pc-size">1 Acre</div><div class="pc-total">PKR 11,520,000</div></div><div class="pc-body"><div class="pc-row"><span class="pct">18% Down</span><span class="pcv">2,073,600</span></div><div class="pc-row"><span class="pct">32% @ M6</span><span class="pcv">3,686,400</span></div><div class="pc-row"><span class="pct">75% @ M12</span><span class="pcv">2,880,000</span></div><div class="pc-row"><span class="pct">100% @ M18</span><span class="pcv">2,880,000</span></div></div></div>
@@ -94,21 +98,45 @@ export default function InvestmentPlanView() {
                   <div class="plot-card featured"><div class="pc-head"><div class="pc-size">5 Acres</div><div class="pc-total">PKR 57,600,000</div></div><div class="pc-body"><div class="pc-row"><span class="pct">18% Down</span><span class="pcv">10,368,000</span></div><div class="pc-row"><span class="pct">32% @ M6</span><span class="pcv">18,432,000</span></div><div class="pc-row"><span class="pct">75% @ M12</span><span class="pcv">14,400,000</span></div><div class="pc-row"><span class="pct">100% @ M18</span><span class="pcv">14,400,000</span></div></div></div>
                   <div class="plot-card"><div class="pc-head"><div class="pc-size">10 Acres</div><div class="pc-total">PKR 115,200,000</div></div><div class="pc-body"><div class="pc-row"><span class="pct">18% Down</span><span class="pcv">20,736,000</span></div><div class="pc-row"><span class="pct">32% @ M6</span><span class="pcv">36,864,000</span></div><div class="pc-row"><span class="pct">75% @ M12</span><span class="pcv">28,800,000</span></div><div class="pc-row"><span class="pct">100% @ M18</span><span class="pcv">28,800,000</span></div></div></div>
                 </div>
+
+                <div class="section-label" style="padding-top:10px;"><div class="sl-line"></div><div class="sl-text">Step 2 — Payment milestones</div><div class="sl-line"></div></div>
                 <div class="steps-strip">
-                  <div class="step-item"><div class="step-pct">18%</div><div class="step-lbl">Down payment</div></div>
-                  <div class="step-item"><div class="step-pct">32%</div><div class="step-lbl">Month 6</div></div>
-                  <div class="step-item"><div class="step-pct">75%</div><div class="step-lbl">Month 12</div></div>
-                  <div class="step-item"><div class="step-pct">100%</div><div class="step-lbl">Month 18</div></div>
+                  <div class="step-item"><div class="step-pct">18%</div><div class="step-lbl">Down payment<br>Book today</div></div>
+                  <div class="step-item"><div class="step-pct">32%</div><div class="step-lbl">Month 6<br>2nd instalment</div></div>
+                  <div class="step-item"><div class="step-pct">75%</div><div class="step-lbl">Month 12<br>Construction starts</div></div>
+                  <div class="step-item"><div class="step-pct">100%</div><div class="step-lbl">Month 18<br>Land fully paid</div></div>
                 </div>
+                <div style="padding: 8px 28px 4px; font-size: 10px; color: #6B9E6E; letter-spacing: 0.04em;">
+                  ↑ Construction phases below are triggered automatically once 75% land payment is cleared
+                </div>
+
+                <div class="section-label" style="padding-top:8px;"><div class="sl-line"></div><div class="sl-text">Step 3 — Construction BOQ (post 75% land clearance)</div><div class="sl-line"></div></div>
+                <div class="boq-section">
+                  <div class="boq-header"><div class="boq-hcell">Phase</div><div class="boq-hcell">1 Acre</div><div class="boq-hcell">2 Acres</div><div class="boq-hcell">5 Acres</div><div class="boq-hcell">10 Acres</div></div>
+                  <div class="boq-row"><div class="boq-phase"><div class="phase-badge" style="background:#378ADD;"></div><div><div class="phase-name">Phase 1 — Foundations</div><div class="phase-months">Months 0–3</div></div></div><div class="boq-val">7,723,825</div><div class="boq-val">9,950,630</div><div class="boq-val">14,105,897</div><div class="boq-val">18,773,168</div></div>
+                  <div class="boq-row"><div class="boq-phase"><div class="phase-badge" style="background:#2C4A2E;"></div><div><div class="phase-name">Phase 2 — Core structure</div><div class="phase-months">Months 4–8</div></div></div><div class="boq-val">13,210,000</div><div class="boq-val">13,643,494</div><div class="boq-val">17,128,253</div><div class="boq-val">23,041,747</div></div>
+                  <div class="boq-row"><div class="boq-phase"><div class="phase-badge" style="background:#6B9E6E;"></div><div><div class="phase-name">Phase 3 — Installations</div><div class="phase-months">Months 9–14</div></div></div><div class="boq-val">4,550,000</div><div class="boq-val">6,306,062</div><div class="boq-val">9,046,969</div><div class="boq-val">11,803,031</div></div>
+                  <div class="boq-row"><div class="boq-phase"><div class="phase-badge" style="background:#C8A050;"></div><div><div class="phase-name">Phase 4 — Finishing</div><div class="phase-months">Months 15–24</div></div></div><div class="boq-val">8,558,103</div><div class="boq-val">9,807,400</div><div class="boq-val">15,697,255</div><div class="boq-val">25,547,449</div></div>
+                  <div class="boq-total-row"><div class="total-label">Total finish product</div><div class="total-val">34,041,928</div><div class="total-val">39,707,586</div><div class="total-val">55,978,374</div><div class="total-val">79,165,395</div></div>
+                  <div class="grand-row"><div class="grand-label">Land + construction combined</div><div class="grand-val">45.56M</div><div class="grand-val">62.75M</div><div class="grand-val">113.58M</div><div class="grand-val">194.37M</div></div>
+                </div>
+
+                <div class="legend">
+                  <div class="leg-item"><div class="leg-dot" style="background:#378ADD;"></div>Phase 1 — Foundations</div>
+                  <div class="leg-item"><div class="leg-dot" style="background:#2C4A2E;"></div>Phase 2 — Structure</div>
+                  <div class="leg-item"><div class="leg-dot" style="background:#6B9E6E;"></div>Phase 3 — Installations</div>
+                  <div class="leg-item"><div class="leg-dot" style="background:#C8A050;"></div>Phase 4 — Finishing</div>
+                </div>
+
                 <div class="ig-footer">
-                  <div class="footer-brand"><div class="fb-arb">ARB. Farms</div><div class="fb-ahmro">Ahmro Global</div></div>
-                  <div class="footer-note">All amounts in PKR</div>
+                  <div class="footer-brand"><div class="fb-arb">ARB. Farms</div><div class="fb-ahmro">Ahmro Global Pvt Ltd</div></div>
+                  <div class="footer-note">All amounts in PKR · Subject to T&amp;C</div>
                 </div>
               </div>
             </body>
           </html>
         `}
-        style={{ width: '100%', height: '580px', border: 'none' }}
+        style={{ width: '100%', height: '800px', border: 'none' }}
         title="Investor Infographic"
       />
     </div>
