@@ -43,6 +43,7 @@ export default function FarmPlanner() {
           <Image src="/ahmro-global-logo.png" alt="Ahmro Global Logo" width={150} height={50} priority />
         </div>
         <div className="header-title">
+          <p className="project-name">Aqeela-e-Bani Hashim</p>
           <p>Self Sustainable</p>
           <h1>OFF Grid Farming Solution</h1>
         </div>
