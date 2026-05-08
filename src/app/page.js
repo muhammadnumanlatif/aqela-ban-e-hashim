@@ -53,7 +53,6 @@ export default function FarmPlanner() {
 
       <header className="premium-header">
         <div className="header-side">
-          <div className="brand-tag">Exclusive Marketing Partner</div>
           <div className="logo-container logo-left">
             <Image src="/ahmro-global-logo.png" alt="Ahmro Global Logo" width={250} height={85} priority />
           </div>
@@ -69,7 +68,6 @@ export default function FarmPlanner() {
         </div>
 
         <div className="header-side text-right">
-          <div className="brand-tag">Technical Developer</div>
           <div className="logo-container logo-right">
             <Image src="/arb-farms-logo.jpeg" alt="ARB Farms Logo" width={250} height={85} priority />
           </div>
