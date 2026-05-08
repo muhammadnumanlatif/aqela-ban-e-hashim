@@ -499,6 +499,31 @@ input[type=range] {
     font-size: 11px;
 }
 
+.modern-boq-table tr:hover {
+    background: #fdfbf7;
+}
+
+.section-subtotal-row {
+    background: #f8fafc;
+    border-top: 2px solid #e2e8f0;
+}
+
+.subtotal-label {
+    text-align: right;
+    font-weight: 700;
+    font-size: 11px;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-right: 15px !important;
+}
+
+.subtotal-value {
+    font-weight: 800;
+    color: var(--primary-green);
+    font-size: 14px;
+}
+
 .modern-boq-table th {
     background: #003366;
     color: white;

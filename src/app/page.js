@@ -158,6 +158,10 @@ function BOQView({ costs }) {
               <td className="item-total num">{Math.round(item.total).toLocaleString()}</td>
             </tr>
           ))}
+          <tr className="section-subtotal-row">
+            <td colSpan="4" className="subtotal-label">SUBTOTAL (before overheads)</td>
+            <td className="num subtotal-value">{Math.round(section.subtotal).toLocaleString()}</td>
+          </tr>
         </tbody>
       </table>
     </div>

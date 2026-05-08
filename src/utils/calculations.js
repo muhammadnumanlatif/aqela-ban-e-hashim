@@ -243,6 +243,7 @@ export const calcCosts = (a) => {
         {
             id: 1,
             title: "1. Site Infrastructure & Earthworks",
+            subtotal: infraTotal,
             items: [
                 { id: "1.1", name: "Boundary Wall", spec: `${boundRft} Rft [SCALED]`, unit: "PKR 3,300 / Rft", total: wall },
                 { id: "1.2", name: "Fancy Elevation (Wall)", spec: `${fancyWallRft} Rft [SCALED]`, unit: "PKR 2,400 / Rft", total: fancyWall },
@@ -257,6 +258,7 @@ export const calcCosts = (a) => {
         {
             id: 2,
             title: "2. Buildings & Structures",
+            subtotal: buildingsTotal,
             items: [
                 { id: "2.1", name: "Farm House (10 Marla)", spec: "10 Marla [FIXED]", unit: "Lump sum", total: house },
                 { id: "2.2", name: "Animal Shed", spec: `${animalShedMarla} Marla [SCALED]`, unit: "PKR 440,000 / Marla", total: animalShed },
@@ -267,6 +269,7 @@ export const calcCosts = (a) => {
         {
             id: 3,
             title: "3. Energy & Utilities",
+            subtotal: energyTotal,
             items: [
                 { id: "3.1", name: "Solar System", spec: `${solarKW} KW [SCALED]`, unit: "Scaled rate / KW", total: solar },
                 { id: "3.2", name: "Biogas Plant", spec: `${biogasM3} m³ [SCALED]`, unit: "Scaled rate / m³", total: biogas },
@@ -276,6 +279,7 @@ export const calcCosts = (a) => {
         {
             id: 4,
             title: "4. Irrigation & Water",
+            subtotal: waterTotal,
             items: [
                 { id: "4.1", name: "Water Filtration System", spec: "1 No. [FIXED]", unit: "Lump sum", total: filtration },
                 { id: "4.2", name: "Drip & Sprinkler System", spec: `${a} Acres [PER ACRE]`, unit: "PKR 250,000 / Acre", total: drip },
@@ -285,6 +289,7 @@ export const calcCosts = (a) => {
         {
             id: 5,
             title: "5. Production Units & Plantation",
+            subtotal: productionTotal,
             items: [
                 { id: "5.1", name: "Modern Fish Pond", spec: `${fishPondMarla} Marla [SCALED]`, unit: "Scaled rate / marla", total: fishPond },
                 { id: "5.2", name: "Vermicompost Unit", spec: `${vermiPct}% capacity [SCALED]`, unit: "Scaled rate / acre", total: vermi },
@@ -296,6 +301,7 @@ export const calcCosts = (a) => {
         {
             id: 6,
             title: "6. Livestock (Initial)",
+            subtotal: livestockTotal,
             items: [
                 { id: "6.1", name: "Sahiwal Cows", spec: `${cowCount} Cows [STEP]`, unit: "PKR 720,000 / Cow", total: cowCount * 720000 },
                 { id: "6.2", name: "Nili-Ravi Buffaloes", spec: `${buffCount} Buffalo [STEP]`, unit: "PKR 900,000 / Buffalo", total: buffCount * 900000 }
