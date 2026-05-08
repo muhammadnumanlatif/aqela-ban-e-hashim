@@ -285,7 +285,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 1: Foundations & Earthworks</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #378add;"></div></div>
-                      <div class="cs-footer"><span>Month 13-15</span> <span class="cost">${Math.round(p1).toLocaleString()}<span>PKR</span></span></div>
+                      <div class="cs-footer"><span>Months 1-4</span> <span class="cost">${Math.round(p1).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -294,7 +294,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 2: Core Grey Structure</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #1e3320;"></div></div>
-                      <div class="cs-footer"><span>Month 16-20</span> <span class="cost">${Math.round(p2).toLocaleString()}<span>PKR</span></span></div>
+                      <div class="cs-footer"><span>Months 5-9</span> <span class="cost">${Math.round(p2).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -303,7 +303,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 3: MEP & Utility Installations</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #8fbb92;"></div></div>
-                      <div class="cs-footer"><span>Month 21-24</span> <span class="cost">${Math.round(p3).toLocaleString()}<span>PKR</span></span></div>
+                      <div class="cs-footer"><span>Months 10-14</span> <span class="cost">${Math.round(p3).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
@@ -312,7 +312,7 @@ export default function InvestmentPlanView({ acres }) {
                     <div class="cs-info">
                       <h4>Phase 4: Finishing & Plantation</h4>
                       <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #c8a050;"></div></div>
-                      <div class="cs-footer"><span>Month 25-30</span> <span class="cost">${Math.round(p4).toLocaleString()}<span>PKR</span></span></div>
+                      <div class="cs-footer"><span>Months 15-24</span> <span class="cost">${Math.round(p4).toLocaleString()}<span>PKR</span></span></div>
                     </div>
                   </div>
 
