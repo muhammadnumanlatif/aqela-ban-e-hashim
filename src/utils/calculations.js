@@ -131,7 +131,19 @@ export const calcCosts = (a) => {
         biogas = cBiogas + 112500 * (a - 5);
     }
     biogas = Math.round(biogas);
-    const electrification = interp(600000, 1200000, a);
+    const bElec = 600000; // 1-acre base electrification
+    const cElec = 1200000; // 5-acre base electrification
+    let electrification;
+    if (a <= 1) {
+        electrification = bElec;
+    } else if (a < 5) {
+        electrification = bElec + 150000 * (a - 1);
+    } else {
+        electrification = cElec + 150000 * (a - 5);
+    }
+    electrification = Math.round(electrification);
+
+    const electrificationPct = Math.min(100, Math.round(50 + (a - 1) * 12.5));
     const energyTotal = solar + biogas + electrification;
 
     // 4. Irrigation & Water
@@ -191,7 +203,7 @@ export const calcCosts = (a) => {
             items: [
                 { id: "3.1", name: "Solar System", spec: `${solarKW} KW [SCALED]`, unit: "Scaled rate / KW", total: solar },
                 { id: "3.2", name: "Biogas Plant", spec: `${biogasM3} m³ [SCALED]`, unit: "Scaled rate / m³", total: biogas },
-                { id: "3.3", name: "Complete Farm Electrification", spec: "100% coverage [SCALED]", unit: "Scaled rate / acre", total: electrification }
+                { id: "3.3", name: "Complete Farm Electrification", spec: `${electrificationPct}% coverage [SCALED]`, unit: "Scaled rate / acre", total: electrification }
             ]
         },
         {
