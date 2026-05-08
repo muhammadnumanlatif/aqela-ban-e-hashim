@@ -78,7 +78,7 @@ export default function InvestmentPlanView({ acres }) {
             <body>
               <div class="hero">
                 <div class="hero-left">
-                  <h1>Integrated Farm Investment Plan</h1>
+                  <h1>Self Sustainable Farm Investment Plan</h1>
                   <p>A simple step-by-step roadmap for your agricultural future.</p>
                   <div class="acres-tag">Project Size: ${acres} Acres</div>
                 </div>
