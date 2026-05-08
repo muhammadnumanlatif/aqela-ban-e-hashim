@@ -211,7 +211,15 @@ export const calcCosts = (a) => {
     const productionTotal = fishPond + vermi + orchard + boundTreeCost + vegArea;
 
     // 6. Livestock (Initial)
-    const cowCount = a <= 2 ? 2 : a <= 5 ? 4 : a <= 10 ? 8 : Math.round(a * 1.2);
+    let cowCount;
+    if (a <= 1) {
+        cowCount = 2;
+    } else if (a <= 3) {
+        cowCount = 3;
+    } else {
+        cowCount = Math.ceil(4 + (a - 5) * 0.6);
+    }
+    
     const buffCount = a <= 2 ? 1 : a <= 5 ? 2 : a <= 10 ? 4 : Math.round(a * 0.5);
     const livestockTotal = cowCount * 720000 + buffCount * 900000;
 
