@@ -153,7 +153,27 @@ export const calcCosts = (a) => {
     const waterTotal = filtration + drip + pressureTank;
 
     // 5. Production Units & Plantation
-    const fishPond = interp(480000, 1200000, a);
+    let fishPondMarla;
+    if (a <= 1) {
+        fishPondMarla = 4;
+    } else if (a < 5) {
+        fishPondMarla = 4 + 1.5 * (a - 1);
+    } else {
+        fishPondMarla = 10 + 1.5 * (a - 5);
+    }
+    fishPondMarla = Math.round(fishPondMarla);
+
+    const bFish = 600000; // 1-acre base fish pond
+    const cFish = 1320000; // 5-acre base fish pond
+    let fishPond;
+    if (a <= 1) {
+        fishPond = bFish;
+    } else if (a < 5) {
+        fishPond = bFish + 180000 * (a - 1);
+    } else {
+        fishPond = cFish + 180000 * (a - 5);
+    }
+    fishPond = Math.round(fishPond);
     const vermi = interp(250000, 500000, a);
     const orchardTrees = Math.round(interp(80, 400, a));
     const orchard = orchardTrees * 1500;
@@ -219,7 +239,7 @@ export const calcCosts = (a) => {
             id: 5,
             title: "5. Production Units & Plantation",
             items: [
-                { id: "5.1", name: "Fish Pond", spec: "10 Marla [SCALED]", unit: "Scaled rate / Marla", total: fishPond },
+                { id: "5.1", name: "Modern Fish Pond", spec: `${fishPondMarla} Marla [SCALED]`, unit: "Scaled rate / marla", total: fishPond },
                 { id: "5.2", name: "Vermicompost Unit", spec: "100% capacity [SCALED]", unit: "Scaled rate / acre", total: vermi },
                 { id: "5.3", name: "Orchard Saplings", spec: `${orchardTrees} Trees [SCALED]`, unit: "PKR 1,500 / Tree", total: orchard },
                 { id: "5.4", name: "Boundary Tree Belt", spec: `${boundTrees} Trees [SCALED]`, unit: "PKR 2,000 / Tree", total: boundTreeCost },
