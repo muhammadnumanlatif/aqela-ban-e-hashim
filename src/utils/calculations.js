@@ -187,7 +187,15 @@ export const calcCosts = (a) => {
     vermi = Math.round(vermi);
 
     const vermiPct = Math.min(100, Math.round(50 + (a - 1) * 12.5));
-    const orchardTrees = Math.round(interp(80, 400, a));
+    let orchardTrees;
+    if (a <= 1) {
+        orchardTrees = 80;
+    } else if (a < 5) {
+        orchardTrees = 80 + 80 * (a - 1);
+    } else {
+        orchardTrees = 400 + 80 * (a - 5);
+    }
+    orchardTrees = Math.round(orchardTrees);
     const orchard = orchardTrees * 1500;
     const boundTrees = Math.round(interp(40, 200, a));
     const boundTreeCost = boundTrees * 2000;
