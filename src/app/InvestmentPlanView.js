@@ -124,10 +124,14 @@ export default function InvestmentPlanView({ acres }) {
                       <td class="pt-info"><h4>Month 12 Milestone</h4><p>Possession & construction starts!</p></td>
                       <td class="pt-price">${Math.round(instalment12M).toLocaleString()}</td>
                     </tr>
-                    <tr style="border: none">
+                    <tr>
                       <td class="pt-pct">25%</td>
                       <td class="pt-info"><h4>Month 18 Final</h4><p>Transfer & Registry completion</p></td>
                       <td class="pt-price">${Math.round(instalment18M).toLocaleString()}</td>
+                    </tr>
+                    <tr style="border: none; background: #fdfbf7;">
+                      <td colspan="2" style="text-align: right; font-weight: 700; font-size: 11px; color: #8a8070; padding-top: 20px; text-transform: uppercase;">Land Plan Subtotal:</td>
+                      <td style="text-align: right; font-weight: 700; font-size: 16px; color: #1e3320; padding-top: 20px;">${totalLandCost.toLocaleString()}</td>
                     </tr>
                   </table>
 
@@ -179,7 +183,7 @@ export default function InvestmentPlanView({ acres }) {
                     </div>
                   </div>
 
-                  <div class="construction-step" style="margin-bottom: 0">
+                  <div class="construction-step">
                     <div class="cs-icon">✨</div>
                     <div class="cs-info">
                       <h4>Phase 4: Finishing & Plantation</h4>
@@ -188,11 +192,11 @@ export default function InvestmentPlanView({ acres }) {
                     </div>
                   </div>
 
-                  <div style="margin-top: 30px; padding: 20px; background: #fff; border-radius: 16px; border: 1px solid #f0ede8;">
-                    <div style="font-size: 11px; font-weight: 700; color: #8a8070; margin-bottom: 10px; text-transform: uppercase;">Construction Summary</div>
+                  <div style="margin-top: 30px; padding: 20px; background: #fff; border-radius: 16px; border: 1.5px solid #1e3320;">
+                    <div style="font-size: 11px; font-weight: 700; color: #8a8070; margin-bottom: 5px; text-transform: uppercase;">Construction Subtotal</div>
                     <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-                      <div style="font-size: 12px; color: #1e3320;">Total Building Area & Assets</div>
-                      <div style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700;">${Math.round(totalConst).toLocaleString()}</div>
+                      <div style="font-size: 12px; color: #1e3320; font-weight: 500;">Assets & Finishing Total</div>
+                      <div style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #1e3320;">${Math.round(totalConst).toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
