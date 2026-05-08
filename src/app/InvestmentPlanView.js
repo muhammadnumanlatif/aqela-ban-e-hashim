@@ -2,7 +2,7 @@
 "use client";
 
 export default function InvestmentPlanView({ acres }) {
-  // Simple Math for Land
+  // Financial Logic
   const landRate = 72000;
   const totalLandCost = acres * 160 * landRate;
   
@@ -11,7 +11,6 @@ export default function InvestmentPlanView({ acres }) {
   const instalment12M = totalLandCost * 0.25;
   const instalment18M = totalLandCost * 0.25;
 
-  // Simple Math for Construction
   const interpVal = (v1, v5, a) => {
     const factor = Math.log(a) / Math.log(5);
     return v1 + (v5 - v1) * factor;
@@ -34,128 +33,180 @@ export default function InvestmentPlanView({ acres }) {
                 * { box-sizing: border-box; margin: 0; padding: 0; }
                 body { background: #fdfbf7; font-family: 'Outfit', sans-serif; color: #1e3320; }
                 
-                .hero { background: #1e3320; color: #fff; padding: 40px 30px; text-align: center; }
-                .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; margin-bottom: 10px; }
-                .hero p { opacity: 0.8; font-size: 14px; letter-spacing: 0.05em; }
+                .hero { background: #1e3320; color: #fff; padding: 35px 40px; display: flex; justify-content: space-between; align-items: center; }
+                .hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; }
+                .hero-left p { opacity: 0.7; font-size: 13px; }
+                .acres-tag { background: #8fbb92; color: #1e3320; padding: 5px 15px; border-radius: 50px; font-weight: 700; font-size: 13px; margin-top: 8px; display: inline-block; }
                 
-                .acres-badge { display: inline-block; background: #8fbb92; color: #1e3320; padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 14px; margin-top: 15px; }
+                .total-investment-bar { background: #f5f2ec; padding: 15px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #ede8df; }
+                .tib-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #8a8070; }
+                .tib-item .val { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #1e3320; }
 
-                .big-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
-                .big-card { background: #fff; border-radius: 20px; padding: 25px; border: 2px solid #eee; position: relative; }
-                .big-card.green { border-color: #8fbb92; }
-                .big-card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #8a8070; margin-bottom: 10px; }
-                .big-card .price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: #1e3320; }
-                .big-card .emoji { position: absolute; top: 20px; right: 20px; font-size: 24px; }
+                .main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+                
+                .column-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1.5px solid #ede8df; }
+                .column-title span { background: #1e3320; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; }
 
-                .timeline { padding: 0 30px 40px; }
-                .section-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-                .section-title span { background: #1e3320; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; }
+                .payment-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+                .payment-table tr { border-bottom: 1px solid #f0ede8; }
+                .payment-table td { padding: 12px 0; }
+                .pt-pct { font-weight: 700; color: #2c4a2e; width: 60px; font-size: 14px; }
+                .pt-info { font-size: 13px; }
+                .pt-info h4 { font-size: 14px; color: #1e3320; }
+                .pt-info p { color: #8a8070; font-size: 11px; }
+                .pt-price { text-align: right; font-weight: 600; color: #1e3320; font-size: 14px; }
+                
+                .milestone-badge { background: #eaf3eb; color: #2c4a2e; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; margin-top: 10px; border: 1px dashed #8fbb92; }
+                .mb-icon { font-size: 24px; }
+                .mb-text h5 { font-size: 13px; font-weight: 700; }
+                .mb-text p { font-size: 11px; color: #5a5040; line-height: 1.4; }
 
-                .steps { position: relative; display: flex; flex-direction: column; gap: 15px; }
-                .step { display: flex; gap: 20px; align-items: center; background: #fff; padding: 15px 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f0ede8; }
-                .step-icon { width: 50px; height: 50px; background: #f5f2ec; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-                .step-info { flex: 1; }
-                .step-info h3 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-                .step-info p { font-size: 12px; color: #7a7060; }
-                .step-cost { text-align: right; }
-                .step-cost .val { font-weight: 700; font-size: 14px; color: #1e3320; }
-                .step-cost .lbl { font-size: 10px; color: #9a8f80; text-transform: uppercase; }
+                .construction-step { display: flex; gap: 15px; margin-bottom: 20px; }
+                .cs-icon { width: 40px; height: 40px; background: #fff; border: 1px solid #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+                .cs-info { flex: 1; }
+                .cs-info h4 { font-size: 13px; margin-bottom: 4px; }
+                .cs-bar-wrap { height: 6px; background: #f0ede8; border-radius: 3px; margin: 8px 0; overflow: hidden; }
+                .cs-bar { height: 100%; border-radius: 3px; }
+                .cs-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 600; text-transform: uppercase; }
 
-                .arrow { text-align: center; color: #c8c0b0; font-size: 18px; margin: -5px 0; }
-
-                .footer { background: #f5f2ec; padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 24px 24px; }
-                .brand { font-weight: 700; font-size: 16px; }
-                .brand span { color: #8fbb92; }
-                .total-box { text-align: right; }
-                .total-box .total-lbl { font-size: 10px; text-transform: uppercase; color: #7a7060; }
-                .total-box .total-val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; }
+                .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; }
+                .brand { font-size: 14px; opacity: 0.8; }
+                .brand b { color: #8fbb92; }
+                .contact { font-size: 11px; text-align: right; opacity: 0.6; }
               </style>
             </head>
             <body>
               <div class="hero">
-                <h1>My Dream Farm Plan 🏡</h1>
-                <p>Everything you need to know about buying and building your farm!</p>
-                <div class="acres-badge">Size: ${acres} Acres</div>
-              </div>
-
-              <div class="big-cards">
-                <div class="big-card green">
-                  <div class="emoji">🗺️</div>
-                  <h2>Ground Price</h2>
-                  <div class="price">${totalLandCost.toLocaleString()} PKR</div>
+                <div class="hero-left">
+                  <h1>Integrated Farm Investment Plan</h1>
+                  <p>A simple step-by-step roadmap for your agricultural future.</p>
+                  <div class="acres-tag">Project Size: ${acres} Acres</div>
                 </div>
-                <div class="big-card">
-                  <div class="emoji">🏗️</div>
-                  <h2>Building Cost</h2>
-                  <div class="price">${Math.round(totalConst).toLocaleString()} PKR</div>
+                <div style="text-align: right">
+                   <div style="font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em;">Location</div>
+                   <div style="font-weight: 600; font-size: 16px;">Aqela Ban-e-Hashim</div>
                 </div>
               </div>
 
-              <div class="timeline">
-                <div class="section-title"><span>1</span> Step 1: Paying for the Land</div>
-                <div class="steps">
-                  <div class="step">
-                    <div class="step-icon">🤝</div>
-                    <div class="step-info"><h3>The Handshake (Down Payment)</h3><p>You pay this to start your journey today!</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(downPayment).toLocaleString()}</div><div class="lbl">18% Now</div></div>
+              <div class="total-investment-bar">
+                <div class="tib-item">
+                  <div class="lbl">Land Subtotal</div>
+                  <div class="val">${totalLandCost.toLocaleString()}</div>
+                </div>
+                <div class="tib-item">
+                  <div class="lbl">Construction Subtotal</div>
+                  <div class="val">${Math.round(totalConst).toLocaleString()}</div>
+                </div>
+                <div class="tib-item" style="border-left: 2px solid #8fbb92; padding-left: 30px;">
+                  <div class="lbl" style="color: #2c4a2e; font-weight: 700;">Grand Total Investment</div>
+                  <div class="val" style="color: #2c4a2e;">${Math.round(totalLandCost + totalConst).toLocaleString()} PKR</div>
+                </div>
+              </div>
+
+              <div class="main-layout">
+                <!-- Column 1: Land Acquisition -->
+                <div class="column">
+                  <div class="column-title"><span>1</span> Land Acquisition Plan</div>
+                  
+                  <table class="payment-table">
+                    <tr>
+                      <td class="pt-pct">18%</td>
+                      <td class="pt-info"><h4>Booking Amount</h4><p>Due immediately to secure the plot</p></td>
+                      <td class="pt-price">${Math.round(downPayment).toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                      <td class="pt-pct">32%</td>
+                      <td class="pt-info"><h4>Month 6 Instalment</h4><p>Second stage of land payment</p></td>
+                      <td class="pt-price">${Math.round(instalment6M).toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                      <td class="pt-pct" style="color: #378add">25%</td>
+                      <td class="pt-info"><h4>Month 12 Milestone</h4><p>Possession & construction starts!</p></td>
+                      <td class="pt-price">${Math.round(instalment12M).toLocaleString()}</td>
+                    </tr>
+                    <tr style="border: none">
+                      <td class="pt-pct">25%</td>
+                      <td class="pt-info"><h4>Month 18 Final</h4><p>Transfer & Registry completion</p></td>
+                      <td class="pt-price">${Math.round(instalment18M).toLocaleString()}</td>
+                    </tr>
+                  </table>
+
+                  <div class="milestone-badge">
+                    <div class="mb-icon">🔑</div>
+                    <div class="mb-text">
+                      <h5>Possession Milestone (Month 12)</h5>
+                      <p>Once 75% of the land cost is cleared, you get the keys to your plot and the foundation of your farm house is laid!</p>
+                    </div>
                   </div>
-                  <div class="arrow">↓</div>
-                  <div class="step">
-                    <div class="step-icon">⏳</div>
-                    <div class="step-info"><h3>First Pocket Money</h3><p>Paid after 6 months of being a farm owner.</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(instalment6M).toLocaleString()}</div><div class="lbl">M6 Payment</div></div>
-                  </div>
-                  <div class="arrow">↓</div>
-                  <div class="step" style="border-left: 4px solid #378add">
-                    <div class="step-icon">🔑</div>
-                    <div class="step-info"><h3>Get the Keys!</h3><p>After 12 months, you can start building your house!</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(instalment12M).toLocaleString()}</div><div class="lbl">M12 Payment</div></div>
-                  </div>
-                  <div class="arrow">↓</div>
-                  <div class="step">
-                    <div class="step-icon">📝</div>
-                    <div class="step-info"><h3>The Final Paperwork</h3><p>The last payment. The land is officially yours forever!</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(instalment18M).toLocaleString()}</div><div class="lbl">M18 Finish</div></div>
+                  
+                  <div class="milestone-badge" style="border-color: #378add; background: #f0f7ff;">
+                    <div class="mb-icon">📜</div>
+                    <div class="mb-text">
+                      <h5 style="color: #003366">Registry & Transfer (Month 18)</h5>
+                      <p>Final ownership transfer and official registration of the land in your name upon 100% payment clearance.</p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="section-title" style="margin-top: 40px"><span>2</span> Step 2: Building the Fun Stuff</div>
-                <div class="steps">
-                  <div class="step">
-                    <div class="step-icon">🧱</div>
-                    <div class="step-info"><h3>Strong Foundations</h3><p>Digging the ground and making it solid.</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(p1).toLocaleString()}</div><div class="lbl">Phase 1</div></div>
+                <!-- Column 2: Construction Phases -->
+                <div class="column">
+                  <div class="column-title"><span>2</span> Farm Construction Phases</div>
+                  
+                  <div class="construction-step">
+                    <div class="cs-icon">🧱</div>
+                    <div class="cs-info">
+                      <h4>Phase 1: Foundations & Earthworks</h4>
+                      <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #378add;"></div></div>
+                      <div class="cs-footer"><span>Month 13-15</span> <span>PKR ${Math.round(p1).toLocaleString()}</span></div>
+                    </div>
                   </div>
-                  <div class="step">
-                    <div class="step-icon">🏠</div>
-                    <div class="step-info"><h3>Walls & Roof</h3><p>Your house and animal sheds start to look real!</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(p2).toLocaleString()}</div><div class="lbl">Phase 2</div></div>
+
+                  <div class="construction-step">
+                    <div class="cs-icon">🏠</div>
+                    <div class="cs-info">
+                      <h4>Phase 2: Core Grey Structure</h4>
+                      <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #1e3320;"></div></div>
+                      <div class="cs-footer"><span>Month 16-20</span> <span>PKR ${Math.round(p2).toLocaleString()}</span></div>
+                    </div>
                   </div>
-                  <div class="step">
-                    <div class="step-icon">⚡</div>
-                    <div class="step-info"><h3>Power & Water</h3><p>Adding solar panels and water for the cows.</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(p3).toLocaleString()}</div><div class="lbl">Phase 3</div></div>
+
+                  <div class="construction-step">
+                    <div class="cs-icon">⚡</div>
+                    <div class="cs-info">
+                      <h4>Phase 3: MEP & Utility Installations</h4>
+                      <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #8fbb92;"></div></div>
+                      <div class="cs-footer"><span>Month 21-24</span> <span>PKR ${Math.round(p3).toLocaleString()}</span></div>
+                    </div>
                   </div>
-                  <div class="step">
-                    <div class="step-icon">✨</div>
-                    <div class="step-info"><h3>The Final Polish</h3><p>Painting, planting trees, and moving in!</p></div>
-                    <div class="step-cost"><div class="val">${Math.round(p4).toLocaleString()}</div><div class="lbl">Phase 4</div></div>
+
+                  <div class="construction-step" style="margin-bottom: 0">
+                    <div class="cs-icon">✨</div>
+                    <div class="cs-info">
+                      <h4>Phase 4: Finishing & Plantation</h4>
+                      <div class="cs-bar-wrap"><div class="cs-bar" style="width: 100%; background: #c8a050;"></div></div>
+                      <div class="cs-footer"><span>Month 25-30</span> <span>PKR ${Math.round(p4).toLocaleString()}</span></div>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: 30px; padding: 20px; background: #fff; border-radius: 16px; border: 1px solid #f0ede8;">
+                    <div style="font-size: 11px; font-weight: 700; color: #8a8070; margin-bottom: 10px; text-transform: uppercase;">Construction Summary</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                      <div style="font-size: 12px; color: #1e3320;">Total Building Area & Assets</div>
+                      <div style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700;">${Math.round(totalConst).toLocaleString()}</div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="footer">
-                <div class="brand">ARB Farms × <span>Ahmro Global</span></div>
-                <div class="total-box">
-                  <div class="total-lbl">Total Investment</div>
-                  <div class="total-val">${Math.round(totalLandCost + totalConst).toLocaleString()} PKR</div>
-                </div>
+                <div class="brand">ARB Farms × <b>Ahmro Global</b></div>
+                <div class="contact">This is a dynamic estimate based on current market rates. <br> Final cost subject to site-specific conditions.</div>
               </div>
             </body>
           </html>
         `}
-        style={{ width: '100%', height: '1100px', border: 'none' }}
-        title="Simple Investment Plan"
+        style={{ width: '100%', height: '800px', border: 'none' }}
+        title="Investment Plan"
       />
     </div>
   );
