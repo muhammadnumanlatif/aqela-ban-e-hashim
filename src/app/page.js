@@ -192,11 +192,11 @@ function BOQView({ costs }) {
                   <td className="item-total num">{Math.round(costs.contingency).toLocaleString()}</td>
                 </tr>
                 <tr className="subtotal-display-row">
-                  <td>Subtotal</td>
+                  <td>Base Project Cost (Sections 1-6)</td>
                   <td className="num">{Math.round(costs.subtotal).toLocaleString()}</td>
                 </tr>
                 <tr className="grand-total-display-row">
-                  <td>GRAND TOTAL</td>
+                  <td>GRAND TOTAL INVESTMENT</td>
                   <td className="num">{Math.round(costs.grand).toLocaleString()}</td>
                 </tr>
               </tbody>
