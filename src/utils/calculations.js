@@ -44,7 +44,15 @@ export const calcCosts = (a) => {
 
     // 2. Buildings & Structures
     const house = 13575000;
-    const animalShedMarla = Math.round(interp(8, 20, a));
+    let animalShedMarla;
+    if (a <= 1) {
+        animalShedMarla = 8;
+    } else if (a < 5) {
+        animalShedMarla = 8 + 3 * (a - 1);
+    } else {
+        animalShedMarla = 20 + 3 * (a - 5);
+    }
+    animalShedMarla = Math.round(animalShedMarla);
     const animalShed = animalShedMarla * 440000;
     const fodder = interp(900000, 1800000, a);
     const greenhouseMarla = Math.round(interp(6, 18, a));
