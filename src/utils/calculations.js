@@ -54,7 +54,17 @@ export const calcCosts = (a) => {
     }
     animalShedMarla = Math.round(animalShedMarla);
     const animalShed = animalShedMarla * 440000;
-    const fodder = interp(900000, 1800000, a);
+    const b7 = 900000; // 1-acre base fodder
+    const c7 = 1800000; // 5-acre base fodder
+    let fodder;
+    if (a <= 1) {
+        fodder = b7;
+    } else if (a < 5) {
+        fodder = b7 + 225000 * (a - 1);
+    } else {
+        fodder = c7 + 225000 * (a - 5);
+    }
+    fodder = Math.round(fodder);
     const greenhouseMarla = Math.round(interp(6, 18, a));
     const greenhouse = greenhouseMarla * 120000; // Adjusted to match ~2.15M at 18 marla
     const buildingsTotal = house + animalShed + fodder + greenhouse;
