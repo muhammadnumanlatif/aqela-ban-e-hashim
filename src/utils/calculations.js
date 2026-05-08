@@ -174,8 +174,8 @@ export const calcCosts = (a) => {
     }
     fishPondMarla = Math.round(fishPondMarla);
 
-    const bFish = 600000; // 1-acre base fish pond
-    const cFish = 1320000; // 5-acre base fish pond
+    const bFish = 480000; // 1-acre base fish pond
+    const cFish = 1200000; // 5-acre base fish pond
     let fishPond;
     if (a <= 1) {
         fishPond = bFish;
