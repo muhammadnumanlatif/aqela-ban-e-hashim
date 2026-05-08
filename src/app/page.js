@@ -106,7 +106,7 @@ export default function FarmPlanner() {
           <div className="boq-container">
             <InvestmentPlanView />
             <div style={{ margin: '40px 0', borderTop: '2px dashed #e2e8f0' }} />
-            <BOQView costs={costs} acres={acres} />
+            <BOQView costs={costs} />
           </div>
         )}
         {activeTab === 'phases' && <PhasesView costs={costs} acres={acres} />}
@@ -117,70 +117,85 @@ export default function FarmPlanner() {
   );
 }
 
-function BOQView({ costs, acres }) {
-  const treeRate = ((costs.items.orchard + costs.items.boundTreeCost) / (costs.orchardTrees + costs.boundTrees) / 1000).toFixed(1) + 'K/Tr';
-
-  const group1 = [
-    { section: '1. Site Infrastructure' },
-    { item: '1.1 Boundary Wall (8ft)', qty: costs.boundRft + ' Rft', unit: '3.3K/RFT', cost: costs.items.wall },
-    { item: '1.2 Front Elevation / Fancy Wall', qty: '1 Unit', unit: 'Lumsum', cost: costs.items.fancyWall },
-    { item: '1.3 Main Gate & Security', qty: '1 No.', unit: 'Lumsum', cost: costs.items.gate },
-    { item: '1.4 Roads & Leveling', qty: acres + ' Ac', unit: 'Scaled', cost: costs.items.roads + costs.items.leveling },
-    { item: '1.5 Water Source & Harvesting[Tube Well]', qty: '1 Unit', unit: 'RCC/TW', cost: costs.items.tubewell + costs.items.waterTank + costs.items.rainwater },
-    { subtotal: 'Infrastructure Subtotal', cost: costs.infra },
-    { section: '2. Buildings & Structures' },
-    { item: '2.1 Designer Farm House', qty: '10 M', unit: 'Finish', cost: costs.items.house },
-    { item: '2.2 Livestock Shed & Fodder Storage', qty: costs.animalShedMarla + ' M', unit: '440K/M', cost: costs.items.animalShed + costs.items.fodder },
-    { item: '2.3 Controlled Greenhouse', qty: '1 Unit', unit: 'Comm.', cost: costs.items.greenhouse },
-    { subtotal: 'Buildings Subtotal', cost: costs.buildings }
-  ];
-
-  const group2 = [
-    { section: '3. Utilities & Smart Farming' },
-    { item: '3.1 Energy (Solar, Bio, Grid)', qty: costs.solarKW + ' KW', unit: 'Hybrid', cost: costs.items.solar + costs.items.biogas + costs.items.electrification },
-    { item: '3.2 Smart Irrigation & Pumps', qty: acres + ' Ac', unit: '250K/Ac', cost: costs.items.drip + costs.items.filtration + costs.items.pressureTank },
-    { subtotal: 'Utilities Subtotal', cost: costs.energy + costs.water },
-    { section: '4. Livestock & Production' },
-    { item: '4.1 Sahiwal Cows', qty: costs.cowCount + ' Nos', unit: '720K/Ea', cost: costs.items.cows },
-    { item: '4.2 Nili Ravi Buffaloes', qty: costs.buffCount + ' Nos', unit: '920K/Ea', cost: costs.items.buffs },
-    { item: '4.3 Commercial Orchard & Trees', qty: (costs.orchardTrees + costs.boundTrees) + ' Tr', unit: treeRate, cost: costs.items.orchard + costs.items.boundTreeCost },
-    { item: '4.4 Fish Pond & Veg/Vermi', qty: '1 Unit', unit: 'Setup', cost: costs.items.fishPond + costs.items.vermi + costs.items.vegArea },
-    { subtotal: 'Livestock/Agri Subtotal', cost: costs.livestock + costs.production },
-    { section: '5. Project Summary' },
-    { grandsubtotal: 'Direct Costs Subtotal', cost: costs.subtotal },
-    { item: 'Management & Consultant', qty: '9%', unit: 'Ahmro', cost: costs.consultant },
-    { item: 'Contingency Fund', qty: '12%', unit: 'Reserve', cost: costs.contingency },
-    { grand: 'ESTIMATED TOTAL', cost: costs.grand }
-  ];
-
-  const renderTable = (rows) => (
-    <div className="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Qty</th>
-            <th>Rate</th>
-            <th className="num">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => {
-            if (r.section) return <tr key={i}><td colSpan="4" className="section-row" style={{ padding: '4px 12px', fontSize: '11px' }}>{r.section}</td></tr>;
-            if (r.grand) return <tr key={i} className="grand-total-row"><td colSpan="3">{r.grand}</td><td className="num">{Math.round(r.cost).toLocaleString()}</td></tr>;
-            if (r.grandsubtotal) return <tr key={i} className="subtotal-row" style={{ background: '#eef2f7' }}><td colSpan="3"><strong>{r.grandsubtotal}</strong></td><td className="num"><strong>{Math.round(r.cost).toLocaleString()}</strong></td></tr>;
-            if (r.subtotal) return <tr key={i} className="subtotal-row"><td colSpan="3">{r.subtotal}</td><td className="num">{Math.round(r.cost).toLocaleString()}</td></tr>;
-            return <tr key={i}><td>{r.item}</td><td style={{ color: 'var(--text-muted)' }}>{r.qty}</td><td style={{ color: 'var(--text-muted)' }}>{r.unit}</td><td className="num">{Math.round(r.cost).toLocaleString()}</td></tr>;
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-
+function BOQView({ costs }) {
   return (
-    <div className="boq-grid">
-      {renderTable(group1)}
-      {renderTable(group2)}
+    <div className="boq-wrapper">
+      <div className="boq-header-summary">
+        <div className="summary-item">
+          <span className="summary-label">Acreage</span>
+          <span className="summary-value">{costs.boundRft ? Math.round(costs.boundRft / 154 * 1).toFixed(0) : 5} Acres</span>
+        </div>
+        <div className="summary-item">
+          <span className="summary-label">Subtotal</span>
+          <span className="summary-value">{costs.subtotal.toLocaleString()}</span>
+        </div>
+        <div className="summary-item">
+          <span className="summary-label">Overheads 21%</span>
+          <span className="summary-value">{(costs.consultant + costs.contingency).toLocaleString()}</span>
+        </div>
+        <div className="summary-item featured">
+          <span className="summary-label">Grand Total</span>
+          <span className="summary-value">{costs.grand.toLocaleString()}</span>
+        </div>
+      </div>
+
+      <div className="boq-table-container">
+        <table className="modern-boq-table">
+          <thead>
+            <tr>
+              <th style={{ width: '40px' }}>#</th>
+              <th>Item Name</th>
+              <th>Quantity / Spec</th>
+              <th>Unit Cost (PKR)</th>
+              <th className="num">Total (PKR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {costs.sections.map((section) => (
+              <>
+                <tr key={`section-${section.id}`} className="section-header-row">
+                  <td colSpan="5">{section.title}</td>
+                </tr>
+                {section.items.map((item) => (
+                  <tr key={item.id} className="item-row">
+                    <td className="item-id">{item.id}</td>
+                    <td className="item-name">{item.name}</td>
+                    <td className="item-spec">{item.spec}</td>
+                    <td className="item-unit">{item.unit}</td>
+                    <td className="item-total num">{Math.round(item.total).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </>
+            ))}
+            <tr className="section-header-row overheads-header">
+              <td colSpan="5">7. Project Overheads</td>
+            </tr>
+            <tr className="subtotal-display-row">
+              <td colSpan="4">SUBTOTAL (before overheads)</td>
+              <td className="num">{Math.round(costs.subtotal).toLocaleString()}</td>
+            </tr>
+            <tr className="item-row">
+              <td className="item-id">7.1</td>
+              <td className="item-name">Consultant Fee (9% of Subtotal)</td>
+              <td className="item-spec">0.09 of PKR {Math.round(costs.subtotal).toLocaleString()}</td>
+              <td className="item-unit">9% on subtotal</td>
+              <td className="item-total num">{Math.round(costs.consultant).toLocaleString()}</td>
+            </tr>
+            <tr className="item-row">
+              <td className="item-id">7.2</td>
+              <td className="item-name">Contingency (12% of Subtotal)</td>
+              <td className="item-spec">0.12 of PKR {Math.round(costs.subtotal).toLocaleString()}</td>
+              <td className="item-unit">12% on subtotal</td>
+              <td className="item-total num">{Math.round(costs.contingency).toLocaleString()}</td>
+            </tr>
+            <tr className="grand-total-display-row">
+              <td colSpan="4">GRAND TOTAL (incl. 9% Consultant + 12% Contingency)</td>
+              <td className="num">{Math.round(costs.grand).toLocaleString()}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="boq-disclaimer">Legend: [FIXED] = constant | [PER ACRE] = scales linearly | [SCALED] = interpolated | [STEP] = increases in steps</p>
     </div>
   );
 }
