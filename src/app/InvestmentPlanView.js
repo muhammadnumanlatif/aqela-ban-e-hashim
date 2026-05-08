@@ -150,7 +150,7 @@ export default function InvestmentPlanView({ acres }) {
 
                 <!-- Column 2: Construction Phases -->
                 <div class="column">
-                  <div class="column-title"><span>2</span> Farm Construction Phases</div>
+                  <div class="column-title"><span>2</span> OFF Grid Construction Phases</div>
                   
                   <div class="construction-step">
                     <div class="cs-icon">🧱</div>
