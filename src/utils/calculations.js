@@ -220,7 +220,7 @@ export const calcCosts = (a) => {
         cowCount = Math.ceil(4 + (a - 5) * 0.6);
     }
     
-    const buffCount = a <= 2 ? 1 : a <= 5 ? 2 : a <= 10 ? 4 : Math.round(a * 0.5);
+    const buffCount = Math.ceil(1 + (a - 1) * 0.25);
     const livestockTotal = cowCount * 720000 + buffCount * 900000;
 
     const subtotal = infraTotal + buildingsTotal + energyTotal + waterTotal + productionTotal + livestockTotal;
