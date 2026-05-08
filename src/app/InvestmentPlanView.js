@@ -28,25 +28,26 @@ export default function InvestmentPlanView({ acres }) {
         srcDoc={`
           <html>
             <head>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <style>
                 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
                 
                 * { box-sizing: border-box; margin: 0; padding: 0; }
-                body { background: #fdfbf7; font-family: 'Outfit', sans-serif; color: #1e3320; }
+                body { background: #fdfbf7; font-family: 'Outfit', sans-serif; color: #1e3320; overflow-x: hidden; }
                 
-                .hero { background: #1e3320; color: #fff; padding: 35px 40px; display: flex; justify-content: space-between; align-items: center; }
+                .hero { background: #1e3320; color: #fff; padding: 35px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
                 .hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; letter-spacing: -0.01em; }
                 .hero-left p { font-family: 'Outfit', sans-serif; opacity: 0.7; font-size: 13px; font-weight: 400; margin-top: 4px; }
                 .acres-tag { background: #8fbb92; color: #1e3320; padding: 5px 15px; border-radius: 50px; font-weight: 600; font-size: 12px; margin-top: 10px; display: inline-block; font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
                 
-                .total-investment-bar { background: #f5f2ec; padding: 15px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #ede8df; }
+                .total-investment-bar { background: #f5f2ec; padding: 15px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #ede8df; flex-wrap: wrap; gap: 20px; }
                 .tib-item .lbl { font-family: 'Outfit', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #8a8070; font-weight: 500; }
                 .tib-item .val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: #1e3320; line-height: 1.1; }
 
                 .main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
                 
                 .column-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1.5px solid #ede8df; color: #1e3320; }
-                .column-title span { background: #1e3320; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; font-weight: 600; }
+                .column-title span { background: #1e3320; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: 'Outfit'; font-weight: 600; flex-shrink: 0; }
 
                 .payment-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
                 .payment-table tr { border-bottom: 1px solid #f0ede8; }
@@ -77,10 +78,59 @@ export default function InvestmentPlanView({ acres }) {
                 .subtotal-row .text { font-size: 13px; color: #1e3320; font-weight: 500; }
                 .subtotal-row .val { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #1e3320; }
 
-                .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', sans-serif; }
+                .footer { background: #1e3320; color: #fff; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; font-family: 'Outfit', sans-serif; flex-wrap: wrap; gap: 15px; }
                 .brand { font-size: 13px; opacity: 0.8; font-weight: 400; }
                 .brand b { color: #8fbb92; font-weight: 600; }
                 .contact { font-size: 10px; text-align: right; opacity: 0.5; font-weight: 300; line-height: 1.5; }
+
+                /* Responsiveness xxl, xl, large, medium, small, mini, foldable */
+                @media (max-width: 1280px) {
+                  .main-layout { gap: 30px; padding: 30px; }
+                  .hero, .total-investment-bar, .footer { padding-left: 30px; padding-right: 30px; }
+                }
+
+                @media (max-width: 1024px) {
+                  .hero-left h1 { font-size: 28px; }
+                  .column-title { font-size: 20px; }
+                  .pt-pct { font-size: 18px; width: 55px; }
+                }
+
+                @media (max-width: 768px) {
+                  .main-layout { grid-template-columns: 1fr; gap: 40px; }
+                  .total-investment-bar { justify-content: flex-start; }
+                  .tib-item { min-width: 150px; }
+                  .hero { text-align: center; justify-content: center; }
+                  .hero-left { width: 100%; }
+                  .contact { text-align: center; width: 100%; }
+                }
+
+                @media (max-width: 640px) {
+                  .hero, .total-investment-bar, .main-layout, .footer { padding: 20px; }
+                  .hero-left h1 { font-size: 24px; }
+                  .tib-item .val { font-size: 20px; }
+                  .column-title { font-size: 18px; }
+                  .payment-table td { padding: 10px 0; }
+                  .pt-pct { width: 45px; font-size: 16px; }
+                  .pt-price { font-size: 15px; }
+                }
+
+                @media (max-width: 480px) {
+                  .hero-left h1 { font-size: 20px; }
+                  .acres-tag { font-size: 10px; padding: 4px 12px; }
+                  .tib-item { min-width: 100%; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; }
+                  .tib-item:last-child { border-bottom: none; padding-bottom: 0; border-left: none !important; padding-left: 0 !important; }
+                  .payment-table td { display: block; width: 100%; text-align: left !important; padding: 5px 0; }
+                  .pt-pct { width: 100%; margin-bottom: 5px; }
+                  .pt-price { margin-top: 5px; font-size: 16px; color: #2c4a2e; }
+                  .milestone-badge { flex-direction: column; text-align: center; }
+                }
+
+                @media (max-width: 320px) {
+                  .hero-left h1 { font-size: 18px; }
+                  .hero, .total-investment-bar, .main-layout, .footer { padding: 15px; }
+                  .column-title { font-size: 16px; gap: 8px; }
+                  .subtotal-row .val { font-size: 20px; }
+                }
               </style>
             </head>
             <body>
@@ -217,7 +267,7 @@ export default function InvestmentPlanView({ acres }) {
             </body>
           </html>
         `}
-        style={{ width: '100%', height: '800px', border: 'none' }}
+        style={{ width: '100%', height: '1400px', border: 'none' }}
         title="Investment Plan"
       />
     </div>
