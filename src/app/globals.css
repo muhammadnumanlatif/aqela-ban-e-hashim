@@ -677,3 +677,67 @@ input[type=range] {
     .map-label { font-size: 10px; }
     .map-acreage { font-size: 10px; padding: 2px 6px; }
 }
+
+/* Validity Banner & FOMO Styling */
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); transform: scale(1); }
+  70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); transform: scale(1.005); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); transform: scale(1); }
+}
+
+.validity-banner {
+    background: linear-gradient(135deg, #1b5235 0%, #2d6a2d 100%);
+    color: #fff;
+    margin: 15px 30px;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    animation: pulse-gold 3s infinite ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.vb-icon {
+    width: 45px;
+    height: 45px;
+    background: #f59e0b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    color: #1b5235;
+}
+
+.vb-content h6 {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: #f59e0b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.vb-content p {
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: 0.95;
+    font-weight: 400;
+}
+
+.vb-highlight {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #f59e0b;
+    text-underline-offset: 3px;
+}
+
+.urgent-bullet {
+    color: #8fbb92;
+    font-weight: 700;
+    margin-right: 5px;
+}
