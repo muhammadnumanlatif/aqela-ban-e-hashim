@@ -24,7 +24,18 @@ export const calcCosts = (a) => {
     const wall = boundRft * 3300;
     const fancyWall = interp(1200000, 1848000, a);
     const gate = 850000;
-    const roads = interp(720000, 2160000, a);
+    
+    const b5 = 720000; // 1-acre base roads
+    const c5 = 2160000; // 5-acre base roads
+    let roads;
+    if (a <= 1) {
+        roads = b5;
+    } else if (a < 5) {
+        roads = b5 + 360000 * (a - 1);
+    } else {
+        roads = c5 + 360000 * (a - 5);
+    }
+    roads = Math.round(roads);
     const leveling = a * 120000;
     const tubewell = 950000;
     const waterTank = 1100000;
