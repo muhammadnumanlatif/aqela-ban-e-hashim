@@ -65,8 +65,27 @@ export const calcCosts = (a) => {
         fodder = c7 + 225000 * (a - 5);
     }
     fodder = Math.round(fodder);
-    const greenhouseMarla = Math.round(interp(6, 18, a));
-    const greenhouse = greenhouseMarla * 120000; // Adjusted to match ~2.15M at 18 marla
+    let greenhouseMarla;
+    if (a <= 1) {
+        greenhouseMarla = 8;
+    } else if (a < 5) {
+        greenhouseMarla = 8 + 2.5 * (a - 1);
+    } else {
+        greenhouseMarla = 18 + 2.5 * (a - 5);
+    }
+    greenhouseMarla = Math.round(greenhouseMarla);
+
+    const bGreenhouse = 1000000; // 1-acre base greenhouse
+    const cGreenhouse = 2156000; // 5-acre base greenhouse
+    let greenhouse;
+    if (a <= 1) {
+        greenhouse = bGreenhouse;
+    } else if (a < 5) {
+        greenhouse = bGreenhouse + 289000 * (a - 1);
+    } else {
+        greenhouse = cGreenhouse + 289000 * (a - 5);
+    }
+    greenhouse = Math.round(greenhouse);
     const buildingsTotal = house + animalShed + fodder + greenhouse;
 
     // 3. Energy & Utilities
