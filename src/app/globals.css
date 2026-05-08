@@ -38,49 +38,96 @@ body {
     overflow: hidden;
 }
 
-/* Header Styles */
-header {
+/* Premium Header Styles */
+.premium-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background: white;
-    border-bottom: 1px solid var(--border-color);
+    padding: 25px 40px;
+    background: linear-gradient(to bottom, #ffffff, #fdfbf7);
+    border-bottom: 3px solid var(--primary-green);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.header-side {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 250px;
+}
+
+.header-side.text-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.brand-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #8a8070;
+    font-weight: 700;
 }
 
 .logo-container img {
-    height: 105px;
+    height: 85px;
     object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-container img:hover {
+    transform: scale(1.02);
+}
+
+.header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.header-badge {
+    background: var(--primary-green);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 10px rgba(27, 82, 53, 0.2);
 }
 
 .header-title {
     text-align: center;
-    flex: 1;
 }
 
 .project-name {
     font-family: var(--font-cormorant), serif;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--primary-green);
-    margin-bottom: -5px;
-    letter-spacing: -0.5px;
-}
-
-.header-title h1 {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--primary-green);
-    letter-spacing: -0.5px;
+    line-height: 1;
     margin-bottom: 2px;
 }
 
-.header-title p {
-    font-size: 14px;
-    color: var(--accent-brown);
-    text-transform: uppercase;
+.header-title h1 {
+    font-size: 18px;
     font-weight: 600;
-    letter-spacing: 1px;
+    color: #1e3320;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.header-subtitle {
+    font-size: 11px;
+    color: #8a8070;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 }
 
 /* Control Panel */

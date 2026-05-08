@@ -38,17 +38,28 @@ export default function FarmPlanner() {
 
   return (
     <main className="app-container">
-      <header>
-        <div className="logo-container logo-left">
-          <Image src="/ahmro-global-logo.png" alt="Ahmro Global Logo" width={300} height={105} priority />
+      <header className="premium-header">
+        <div className="header-side">
+          <div className="brand-tag">Exclusive Marketing Partner</div>
+          <div className="logo-container logo-left">
+            <Image src="/ahmro-global-logo.png" alt="Ahmro Global Logo" width={250} height={85} priority />
+          </div>
         </div>
-        <div className="header-title">
-          <p className="project-name">Aqeela-e-Bani Hashim</p>
-          <p>Self Sustainable</p>
-          <h1>OFF Grid Farming Solution</h1>
+
+        <div className="header-center">
+          <div className="header-badge">Sustainable Investment</div>
+          <div className="header-title">
+            <p className="project-name">Aqeela-e-Bani Hashim</p>
+            <h1>OFF Grid Farming Solution</h1>
+            <p className="header-subtitle">Ecological & Self-Sufficient Living</p>
+          </div>
         </div>
-        <div className="logo-container logo-right">
-          <Image src="/arb-farms-logo.jpeg" alt="ARB Farms Logo" width={300} height={105} priority />
+
+        <div className="header-side text-right">
+          <div className="brand-tag">Technical Developer</div>
+          <div className="logo-container logo-right">
+            <Image src="/arb-farms-logo.jpeg" alt="ARB Farms Logo" width={250} height={85} priority />
+          </div>
         </div>
       </header>
 
