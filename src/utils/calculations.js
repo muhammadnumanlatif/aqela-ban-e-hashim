@@ -197,7 +197,15 @@ export const calcCosts = (a) => {
     }
     orchardTrees = Math.round(orchardTrees);
     const orchard = orchardTrees * 1500;
-    const boundTrees = Math.round(interp(40, 200, a));
+    let boundTrees;
+    if (a <= 1) {
+        boundTrees = 40;
+    } else if (a < 5) {
+        boundTrees = 40 + 40 * (a - 1);
+    } else {
+        boundTrees = 200 + 40 * (a - 5);
+    }
+    boundTrees = Math.round(boundTrees);
     const boundTreeCost = boundTrees * 2000;
     const vegArea = a * 150000;
     const productionTotal = fishPond + vermi + orchard + boundTreeCost + vegArea;
