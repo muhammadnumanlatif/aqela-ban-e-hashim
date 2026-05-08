@@ -174,7 +174,19 @@ export const calcCosts = (a) => {
         fishPond = cFish + 180000 * (a - 5);
     }
     fishPond = Math.round(fishPond);
-    const vermi = interp(250000, 500000, a);
+    const bVermi = 250000; // 1-acre base vermi
+    const cVermi = 500000; // 5-acre base vermi
+    let vermi;
+    if (a <= 1) {
+        vermi = bVermi;
+    } else if (a < 5) {
+        vermi = bVermi + 62500 * (a - 1);
+    } else {
+        vermi = cVermi + 62500 * (a - 5);
+    }
+    vermi = Math.round(vermi);
+
+    const vermiPct = Math.min(100, Math.round(50 + (a - 1) * 12.5));
     const orchardTrees = Math.round(interp(80, 400, a));
     const orchard = orchardTrees * 1500;
     const boundTrees = Math.round(interp(40, 200, a));
@@ -240,7 +252,7 @@ export const calcCosts = (a) => {
             title: "5. Production Units & Plantation",
             items: [
                 { id: "5.1", name: "Modern Fish Pond", spec: `${fishPondMarla} Marla [SCALED]`, unit: "Scaled rate / marla", total: fishPond },
-                { id: "5.2", name: "Vermicompost Unit", spec: "100% capacity [SCALED]", unit: "Scaled rate / acre", total: vermi },
+                { id: "5.2", name: "Vermicompost Unit", spec: `${vermiPct}% capacity [SCALED]`, unit: "Scaled rate / acre", total: vermi },
                 { id: "5.3", name: "Orchard Saplings", spec: `${orchardTrees} Trees [SCALED]`, unit: "PKR 1,500 / Tree", total: orchard },
                 { id: "5.4", name: "Boundary Tree Belt", spec: `${boundTrees} Trees [SCALED]`, unit: "PKR 2,000 / Tree", total: boundTreeCost },
                 { id: "5.5", name: "Vegetable Area Development", spec: `${a} Acres [PER ACRE]`, unit: "PKR 150,000 / Acre", total: vegArea }
