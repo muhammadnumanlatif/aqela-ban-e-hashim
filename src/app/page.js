@@ -27,7 +27,7 @@ ChartJS.register(
 
 export default function FarmPlanner() {
   const [acres, setAcres] = useState(5);
-  const [activeTab, setActiveTab] = useState("boq");
+  const [activeTab, setActiveTab] = useState("investment");
   const [costs, setCosts] = useState(null);
 
   useEffect(() => {
