@@ -67,15 +67,15 @@ export default function InvestmentPlanView({ acres }) {
                 .mb-text h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
                 .mb-text p { font-size: 11px; color: #5a5040; line-height: 1.5; font-weight: 400; }
 
-                .construction-step { display: flex; gap: 15px; margin-bottom: 22px; font-family: 'Outfit', sans-serif; }
-                .cs-icon { width: 42px; height: 42px; background: #fff; border: 1px solid #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-                .cs-info { flex: 1; }
-                .cs-info h4 { font-size: 13px; margin-bottom: 6px; font-weight: 600; color: #1e3320; }
-                .cs-bar-wrap { height: 6px; background: #f0ede8; border-radius: 3px; margin: 8px 0; overflow: hidden; }
-                .cs-bar { height: 100%; border-radius: 3px; }
-                .cs-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-                .cs-footer .cost { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #1b5235; letter-spacing: 0; }
-                .cs-footer .cost span { font-size: 10px; opacity: 0.7; font-weight: 400; margin-left: 3px; }
+                .construction-step, .land-step { display: flex; gap: 15px; margin-bottom: 22px; font-family: 'Outfit', sans-serif; }
+                .cs-icon, .ls-icon { width: 42px; height: 42px; background: #fff; border: 1px solid #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+                .cs-info, .ls-info { flex: 1; }
+                .cs-info h4, .ls-info h4 { font-size: 13px; margin-bottom: 6px; font-weight: 600; color: #1e3320; }
+                .cs-bar-wrap, .ls-bar-wrap { height: 6px; background: #f0ede8; border-radius: 3px; margin: 8px 0; overflow: hidden; }
+                .cs-bar, .ls-bar { height: 100%; border-radius: 3px; }
+                .cs-footer, .ls-footer { display: flex; justify-content: space-between; font-size: 10px; color: #9a8f80; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; align-items: baseline; }
+                .cs-footer .cost, .ls-footer .cost { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #1b5235; letter-spacing: 0; }
+                .cs-footer .cost span, .ls-footer .cost span { font-size: 10px; opacity: 0.7; font-weight: 400; margin-left: 3px; }
 
                 .subtotal-box { margin-top: 30px; padding: 22px; background: #f8fafc; border-radius: 16px; border: 1.5px solid #1b5235; font-family: 'Outfit', sans-serif; }
                 .subtotal-lbl { font-size: 10px; font-weight: 700; color: #1b5235; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em; }
@@ -203,9 +203,9 @@ export default function InvestmentPlanView({ acres }) {
                   .mb-text h5 { font-size: 12px; }
                   .mb-text p { font-size: 10px; }
 
-                  .construction-step { gap: 10px; }
-                  .cs-icon { width: 36px; height: 36px; font-size: 16px; }
-                  .cs-footer .cost { font-size: 14px; }
+                  .construction-step, .land-step { gap: 10px; }
+                  .cs-icon, .ls-icon { width: 36px; height: 36px; font-size: 16px; }
+                  .cs-footer .cost, .ls-footer .cost { font-size: 14px; }
                 }
 
                 @media (max-width: 320px) {
@@ -249,31 +249,49 @@ export default function InvestmentPlanView({ acres }) {
                 <div class="column">
                   <div class="column-title"><span>1</span> Land Acquisition Plan</div>
                   
-                  <table class="payment-table">
-                    <tr>
-                      <td class="pt-pct">18%</td>
-                      <td class="pt-info"><h4>Booking Amount</h4><p>Due immediately to secure the plot</p></td>
-                      <td class="pt-price">${Math.round(downPayment).toLocaleString()}<span>PKR</span></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-pct">32%</td>
-                      <td class="pt-info"><h4>Month 6 Instalment</h4><p>Second stage of land payment</p></td>
-                      <td class="pt-price">${Math.round(instalment6M).toLocaleString()}<span>PKR</span></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-pct" style="color: #378add">25%</td>
-                      <td class="pt-info"><h4>Month 12 Milestone</h4><p>Possession & construction starts!</p></td>
-                      <td class="pt-price">${Math.round(instalment12M).toLocaleString()}<span>PKR</span></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-pct">25%</td>
-                      <td class="pt-info"><h4>Month 18 Final</h4><p>Transfer & Registry completion</p></td>
-                      <td class="pt-price">${Math.round(instalment18M).toLocaleString()}<span>PKR</span></td>
-                    </tr>
-                    <tr style="border: none; background: #fdfbf7;">
-                      <td colspan="2" class="subtotal-mobile" style="text-align: right; font-weight: 600; font-size: 11px; color: #8a8070; text-transform: uppercase; font-family: 'Outfit', sans-serif; letter-spacing: 0.05em;">Land Plan Subtotal: <span style="font-weight: 700; font-size: 20px; color: #1b5235; margin-left: 15px;">${totalLandCost.toLocaleString()}<span style="font-size: 12px; font-weight: 400; opacity: 0.7;">PKR</span></span></td>
-                    </tr>
-                  </table>
+                  <div class="land-step">
+                    <div class="ls-icon">📝</div>
+                    <div class="ls-info">
+                      <h4>Booking Amount (18%)</h4>
+                      <div class="ls-bar-wrap"><div class="ls-bar" style="width: 100%; background: #1b5235;"></div></div>
+                      <div class="ls-footer"><span>Due Immediately</span> <span class="cost">${Math.round(downPayment).toLocaleString()}<span>PKR</span></span></div>
+                    </div>
+                  </div>
+
+                  <div class="land-step">
+                    <div class="ls-icon">🏦</div>
+                    <div class="ls-info">
+                      <h4>Month 6 Instalment (32%)</h4>
+                      <div class="ls-bar-wrap"><div class="ls-bar" style="width: 100%; background: #2c4a2e;"></div></div>
+                      <div class="ls-footer"><span>Month 6 Milestone</span> <span class="cost">${Math.round(instalment6M).toLocaleString()}<span>PKR</span></span></div>
+                    </div>
+                  </div>
+
+                  <div class="land-step">
+                    <div class="ls-icon">🔑</div>
+                    <div class="ls-info">
+                      <h4>Month 12 Milestone (25%)</h4>
+                      <div class="ls-bar-wrap"><div class="ls-bar" style="width: 100%; background: #378add;"></div></div>
+                      <div class="ls-footer"><span>Month 12 - Possession</span> <span class="cost">${Math.round(instalment12M).toLocaleString()}<span>PKR</span></span></div>
+                    </div>
+                  </div>
+
+                  <div class="land-step">
+                    <div class="ls-icon">📜</div>
+                    <div class="ls-info">
+                      <h4>Final Registry (25%)</h4>
+                      <div class="ls-bar-wrap"><div class="ls-bar" style="width: 100%; background: #c8a050;"></div></div>
+                      <div class="ls-footer"><span>Month 18 - Transfer</span> <span class="cost">${Math.round(instalment18M).toLocaleString()}<span>PKR</span></span></div>
+                    </div>
+                  </div>
+
+                  <div class="subtotal-box" style="margin-bottom: 30px;">
+                    <div class="subtotal-lbl">Land Subtotal</div>
+                    <div class="subtotal-row">
+                      <div class="text">Total Land Acquisition</div>
+                      <div class="val">${totalLandCost.toLocaleString()}<span>PKR</span></div>
+                    </div>
+                  </div>
 
                   <div class="milestone-badge">
                     <div class="mb-icon">🔑</div>
