@@ -181,7 +181,7 @@ input[type=range] {
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 15px;
     padding: 15px 30px;
-    order: 3;
+    order: 6; /* Moved to bottom */
 }
 
 .metric-card {
@@ -223,7 +223,7 @@ input[type=range] {
     padding: 0 30px;
     gap: 15px;
     border-bottom: 1px solid var(--border-color);
-    order: 4;
+    order: 3;
 }
 
 .tab-btn {
@@ -251,11 +251,11 @@ input[type=range] {
 .tab-content {
     padding: 20px 30px;
     animation: fadeIn 0.4s ease;
-    order: 5;
+    order: 4;
 }
 
 .validity-banner {
-    order: 6;
+    order: 5;
 }
 
 @keyframes fadeIn {
@@ -704,7 +704,7 @@ input[type=range] {
         font-size: 16px;
     }
 
-    /* THE SWAP: Tabs above Metrics */
+    /* THE SWAP: Tabs above Content */
     .tabs-nav {
         order: 3;
         padding: 0 15px;
@@ -750,7 +750,7 @@ input[type=range] {
     }
 
     .metrics-grid {
-        order: 4;
+        order: 6; /* Keep at bottom in mobile too */
         grid-template-columns: repeat(2, 1fr);
         padding: 20px 15px;
         gap: 12px;
