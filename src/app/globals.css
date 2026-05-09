@@ -36,6 +36,8 @@ body {
     box-shadow: var(--card-shadow);
     border: 1px solid var(--border-color);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Premium Header Styles */
@@ -48,6 +50,7 @@ body {
     border-bottom: 3px solid var(--primary-green);
     position: relative;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    order: 1;
 }
 
 .header-side {
@@ -139,6 +142,7 @@ body {
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
+    order: 2;
 }
 
 .acre-input-group {
@@ -177,6 +181,7 @@ input[type=range] {
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 15px;
     padding: 15px 30px;
+    order: 3;
 }
 
 .metric-card {
@@ -218,6 +223,7 @@ input[type=range] {
     padding: 0 30px;
     gap: 15px;
     border-bottom: 1px solid var(--border-color);
+    order: 4;
 }
 
 .tab-btn {
@@ -245,6 +251,11 @@ input[type=range] {
 .tab-content {
     padding: 20px 30px;
     animation: fadeIn 0.4s ease;
+    order: 5;
+}
+
+.validity-banner {
+    order: 6;
 }
 
 @keyframes fadeIn {
@@ -593,6 +604,27 @@ input[type=range] {
     padding: 15px 12px !important;
 }
 
+@media (max-width: 576px) {
+    .boq-wrapper {
+        padding: 10px;
+    }
+    .modern-boq-table {
+        font-size: 10px;
+    }
+    .modern-boq-table th, .modern-boq-table td {
+        padding: 5px 6px;
+    }
+    .item-spec {
+        display: none; /* Hide specs on mobile to save space */
+    }
+    .subtotal-value {
+        font-size: 12px;
+    }
+    .grand-total-display-row td {
+        font-size: 14px;
+    }
+}
+
 .boq-disclaimer {
     margin-top: 25px;
     font-size: 12px;
@@ -651,6 +683,97 @@ input[type=range] {
 }
 
 @media (max-width: 576px) { /* Small Devices (Phones) */
+    .app-container {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .premium-header {
+        padding: 20px 15px;
+    }
+
+    .header-center {
+        margin: 15px 0;
+    }
+
+    .project-name {
+        font-size: 24px;
+    }
+
+    .header-title h1 {
+        font-size: 16px;
+    }
+
+    /* THE SWAP: Tabs above Metrics */
+    .tabs-nav {
+        order: 3;
+        padding: 0 15px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none; 
+        -ms-overflow-style: none;
+        border-bottom: 2px solid var(--border-color);
+        background: #fff;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        gap: 25px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-btn {
+        padding: 15px 5px;
+        font-size: 14px;
+        flex-shrink: 0;
+        opacity: 0.7;
+        position: relative;
+    }
+
+    .tab-btn.active {
+        opacity: 1;
+        color: var(--primary-green);
+    }
+
+    .tab-btn.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary-green);
+        border-radius: 3px 3px 0 0;
+    }
+
+    .metrics-grid {
+        order: 4;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px 15px;
+        gap: 12px;
+        background: linear-gradient(to bottom, #fff, #f8faf8);
+    }
+
+    .metric-card {
+        padding: 10px;
+    }
+
+    .metric-value {
+        font-size: 16px;
+    }
+
+    .metric-label {
+        font-size: 10px;
+    }
+
+    .tab-content {
+        order: 5;
+        padding: 15px;
+    }
+
     .map-2d-grid {
         grid-template-areas: 
             "rez"
@@ -666,8 +789,22 @@ input[type=range] {
     .map-icon { font-size: 24px; }
     .map-label { font-size: 12px; }
     
-    .acre-input-group { flex-direction: column; width: 100%; }
-    .tabs-nav { flex-wrap: wrap; justify-content: center; }
+    .acre-input-group { 
+        flex-direction: row; 
+        width: 100%; 
+        justify-content: space-between;
+        padding: 10px 15px;
+        border-radius: 12px;
+    }
+
+    input[type=range] {
+        width: 120px;
+    }
+
+    .acre-display {
+        font-size: 16px;
+        min-width: auto;
+    }
 }
 
 @media (max-width: 360px) { /* Mini / Foldable Devices */
@@ -736,8 +873,14 @@ input[type=range] {
     text-underline-offset: 3px;
 }
 
-.urgent-bullet {
-    color: #8fbb92;
-    font-weight: 700;
-    margin-right: 5px;
+@media (max-width: 576px) {
+    .validity-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        margin: 10px;
+    }
+    .vb-icon {
+        margin-bottom: 10px;
+    }
 }
