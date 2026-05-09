@@ -181,14 +181,31 @@ export default function InvestmentPlanView({ acres }) {
                 }
 
                 @media (max-width: 480px) {
+                  .hero { padding: 25px 20px; }
                   .hero-left h1 { font-size: 20px; }
                   .acres-tag { font-size: 10px; padding: 4px 12px; }
-                  .tib-item { min-width: 100%; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; }
+                  .tib-item { min-width: 100%; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; margin-bottom: 10px; }
                   .tib-item:last-child { border-bottom: none; padding-bottom: 0; border-left: none !important; padding-left: 0 !important; }
-                  .payment-table td { display: block; width: 100%; text-align: left !important; padding: 5px 0; }
-                  .pt-pct { width: 100%; margin-bottom: 5px; }
-                  .pt-price { margin-top: 5px; font-size: 16px; color: #2c4a2e; }
-                  .milestone-badge { flex-direction: column; text-align: center; }
+                  
+                  .main-layout { padding: 20px 15px; }
+                  
+                  .payment-table td { display: grid; grid-template-columns: 50px 1fr auto; align-items: center; gap: 10px; padding: 15px 0; border-bottom: 1px solid #f0ede8; }
+                  .payment-table tr { border: none; }
+                  .payment-table td.subtotal-mobile { grid-template-columns: 1fr auto; padding-top: 25px; border: none; }
+                  .pt-pct { font-size: 15px; width: auto; margin-bottom: 0; }
+                  .pt-info h4 { font-size: 12px; }
+                  .pt-info p { font-size: 9px; }
+                  .pt-price { font-size: 14px; margin-top: 0; color: #1b5235; }
+                  .pt-price span { font-size: 9px; }
+                  
+                  .milestone-badge { padding: 15px; gap: 12px; text-align: left; }
+                  .mb-icon { font-size: 20px; }
+                  .mb-text h5 { font-size: 12px; }
+                  .mb-text p { font-size: 10px; }
+
+                  .construction-step { gap: 10px; }
+                  .cs-icon { width: 36px; height: 36px; font-size: 16px; }
+                  .cs-footer .cost { font-size: 14px; }
                 }
 
                 @media (max-width: 320px) {
@@ -254,8 +271,7 @@ export default function InvestmentPlanView({ acres }) {
                       <td class="pt-price">${Math.round(instalment18M).toLocaleString()}<span>PKR</span></td>
                     </tr>
                     <tr style="border: none; background: #fdfbf7;">
-                      <td colspan="2" style="text-align: right; font-weight: 600; font-size: 11px; color: #8a8070; padding-top: 25px; text-transform: uppercase; font-family: 'Outfit', sans-serif; letter-spacing: 0.05em;">Land Plan Subtotal:</td>
-                      <td style="text-align: right; font-weight: 700; font-size: 20px; color: #1b5235; padding-top: 25px; font-family: 'Outfit', sans-serif;">${totalLandCost.toLocaleString()}<span>PKR</span></td>
+                      <td colspan="2" class="subtotal-mobile" style="text-align: right; font-weight: 600; font-size: 11px; color: #8a8070; text-transform: uppercase; font-family: 'Outfit', sans-serif; letter-spacing: 0.05em;">Land Plan Subtotal: <span style="font-weight: 700; font-size: 20px; color: #1b5235; margin-left: 15px;">${totalLandCost.toLocaleString()}<span style="font-size: 12px; font-weight: 400; opacity: 0.7;">PKR</span></span></td>
                     </tr>
                   </table>
 
@@ -333,7 +349,7 @@ export default function InvestmentPlanView({ acres }) {
             </body>
           </html>
         `}
-        style={{ width: '100%', height: '1400px', border: 'none' }}
+        style={{ width: '100%', minHeight: '800px', height: 'auto', border: 'none' }}
         title="Investment Plan"
       />
     </div>

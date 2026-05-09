@@ -707,18 +707,21 @@ input[type=range] {
     /* THE SWAP: Tabs above Content */
     .tabs-nav {
         order: 3;
-        padding: 0 15px;
+        padding: 0 20px;
         overflow-x: auto;
         white-space: nowrap;
+        flex-wrap: nowrap; /* Prevent wrapping into multiple rows */
         scrollbar-width: none; 
         -ms-overflow-style: none;
-        border-bottom: 2px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         background: #fff;
         position: sticky;
         top: 0;
         z-index: 100;
-        gap: 25px;
+        gap: 30px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        align-items: center;
+        height: 55px;
     }
 
     .tabs-nav::-webkit-scrollbar {
